@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jimcontest-dev-10822-authRole",
+      "UnauthRoleArn": "arn:aws:iam::586326590431:role/amplify-jimcontest-dev-10822-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::586326590431:role/amplify-jimcontest-dev-10822-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-jimcontest-dev-10822-deployment",
+      "UnauthRoleName": "amplify-jimcontest-dev-10822-unauthRole",
+      "StackName": "amplify-jimcontest-dev-10822",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:586326590431:stack/amplify-jimcontest-dev-10822/39ac7320-ebd0-11eb-9358-066c9de695cb",
+      "AmplifyAppId": "dtsd0ptxbhu0h"
+    }
+  }
+}
