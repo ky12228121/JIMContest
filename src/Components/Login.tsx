@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userActions } from '../stores/userReducer';
+import { userActions } from '../Stores/UserReducer';
 
 const Authentication = () => {
   const history = useHistory();
