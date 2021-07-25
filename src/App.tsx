@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+import Authentication from './Components/Login';
+// import Contest from './components/contestTop';
+import NavBarItem from './Layout/NavbarItem';
+// import TopPage from './components/topPage';
+import { userActions } from './Stores/UserReducer';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const { setUsername } = userActions;
+  const username = useSelector((state: any) => state.user.username);
+  const localUsername = localStorage.username;
+  console.log(localUsername);
+  if (username === '' && localUsername) {
+    dispatch(setUsername(localUsername));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        {username ? <NavBarItem /> : <div></div>}
+        <Switch>
+          <Route exact path="/">
+            {localUsername ? <div /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/login">
+            <Authentication />
+          </Route>
+          <Route path="/contest">{/* <Contest /> */}</Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
