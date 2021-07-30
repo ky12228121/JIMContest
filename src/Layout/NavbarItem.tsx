@@ -30,8 +30,8 @@ const NavBarItem = () => {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container-fluid">
           <div className="navbar-nav">
-            <div className="row">
-              <div className="col-1 avbar-brand">
+            <div className="row navbar-brand">
+              <div className="col-1 ">
                 <img
                   alt=""
                   src="/logo.svg"
@@ -47,65 +47,71 @@ const NavBarItem = () => {
             </div>
           </div>
           <div className="collapse navbar-collapse">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item" onClick={() => onClickMove('/')}>
-                <div className="nav-link">Home</div>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li
+                className="nav-item btn btn-dark"
+                onClick={() => onClickMove('/')}
+              >
+                <div>Home</div>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
+              <li className="nav-item dropdown btn btn-dark">
+                <div
+                  className="dropdown-toggle"
                   role="button"
                   data-bs-toggle="dropdown"
                 >
                   Contest
-                </a>
+                </div>
+                <ul className="dropdown-menu">
+                  <li>
+                    <div
+                      className="dropdown-item"
+                      onClick={() => onClickMove('/contest/cube3')}
+                    >
+                      <span className="cubing-icon event-333 col-1"></span>
+                      <span className="col">3×3×3</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="dropdown-item"
+                      onClick={() => onClickMove('/contest/oh3')}
+                    >
+                      <span className="cubing-icon event-333 col-1"></span>
+                      <span className="col">3×3×3 OH</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="dropdown-item"
+                      onClick={() => onClickMove('/contest/square1')}
+                    >
+                      <span className="cubing-icon event-333 col-1"></span>
+                      <span className="col">Square-1</span>
+                    </div>
+                  </li>
+                </ul>
               </li>
-              <ul className="dropdown-menu">
-                <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => onClickMove('/contest/cube3')}
-                  >
-                    <span className="cubing-icon event-333 col-1"></span>
-                    <span className="col">3×3×3</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => onClickMove('/contest/oh3')}
-                  >
-                    <span className="cubing-icon event-333 col-1"></span>
-                    <span className="col">3×3×3 OH</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => onClickMove('/contest/square1')}
-                  >
-                    <span className="cubing-icon event-333 col-1"></span>
-                    <span className="col">Square-1</span>
-                  </a>
-                </li>
-              </ul>
+
               <li
-                className="nav-item"
+                className="nav-item btn btn-dark"
                 onClick={() => onClickMove('/contest/result/all')}
               >
-                <a className="nav-link">All results</a>
+                <div>All results</div>
               </li>
               <li
-                className="nav-item"
+                className="nav-item btn btn-dark"
                 onClick={() => onClickMove('/contest/result/personal')}
               >
-                <a className="nav-link">All resultPersonal result</a>
+                <div>All resultPersonal result</div>
               </li>
             </ul>
-            <ul>
-              <li className="nav-item" onClick={onClickLogout}>
-                <a className="nav-link">Sign out</a>
+            <ul className="navbar-navmb-2 mb-lg-0">
+              <li
+                className="nav-item btn btn-outline-light"
+                onClick={onClickLogout}
+              >
+                <div>Sign out</div>
               </li>
             </ul>
           </div>
