@@ -20,12 +20,12 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "singleQuote": true
       }
     ],
-    "quotes": ["error", "single"],
+    "quotes": ["warn", "single"],
     "no-unused-vars": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
