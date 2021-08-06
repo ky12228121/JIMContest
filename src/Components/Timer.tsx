@@ -6,11 +6,12 @@ import { altFlagDefault } from '../types/defalut';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContestResultActions } from '../Stores/ContestResultReducer';
 import { ContestStatusActions } from '../Stores/ContestStatusReducer';
+import { RootState } from '../Stores/Store';
 
 const Timer = () => {
   const dispatch = useDispatch();
   const { setResult } = ContestResultActions;
-  const { setCube3Increase } = ContestStatusActions;
+  const { setNumberIncrease } = ContestStatusActions;
   const [timerText, setTimerText] = useState('0.000');
   const [timerState, setTimerState] = useState('init');
   const [longPressFlag, setLongPressFlag] = useState(false);
@@ -20,9 +21,7 @@ const Timer = () => {
   const [altFlag, setAltFlag] = useState<AltFlag>(altFlagDefault);
   const inspectionStartTime = useRef<Date | null>(null);
   const solveStartTime = useRef<Date | null>(null);
-  const currentNumber = useSelector(
-    (state) => state.contestStatus.cube3.number
-  );
+  const currentNumber = useSelector((state: RootState) => state.contestStatus);
   function inspectionTimer() {
     const currentTime = new Date();
     let startTime = inspectionStartTime.current;
@@ -92,8 +91,13 @@ const Timer = () => {
     if (solveStartTime.current !== null) {
       const delta = currentTime.getTime() - solveStartTime.current.getTime();
       setTimerText(timeFormat(delta));
-      dispatch(setResult({ number: 1, result: timeFormat(delta) }));
-      dispatch(setCube3Increase({}));
+      dispatch(
+        setResult({
+          number: currentNumber.number,
+          result: timeFormat(delta),
+        })
+      );
+      dispatch(setNumberIncrease({}));
     }
   }
 
@@ -167,7 +171,7 @@ const Timer = () => {
             ? '#CCFFCC'
             : timerState === 'inspection'
             ? '#FFCCFF'
-            : '#DDDDDD',
+            : '#EEEEEE',
         }}
         onKeyDown={handleKeyDownTimer}
         onKeyUp={handleKeyUpTimer}

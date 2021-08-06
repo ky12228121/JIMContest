@@ -12,23 +12,111 @@ const ContestResultReducer = createSlice({
   reducers: {
     setResult: (state, action) => {
       const resultNumber = action.payload.number;
-
-      return {
-        ...state,
-        [`result${resultNumber}`]: {
-          result: action.payload.result,
-          penalty: 'no',
-        },
-      };
+      let newState = { ...state };
+      switch (resultNumber) {
+        case 1:
+          newState = {
+            ...state,
+            result1: {
+              result: action.payload.result,
+              penalty: 'no',
+            },
+          };
+          break;
+        case 2:
+          newState = {
+            ...state,
+            result2: {
+              result: action.payload.result,
+              penalty: 'no',
+            },
+          };
+          break;
+        case 3:
+          newState = {
+            ...state,
+            result3: {
+              result: action.payload.result,
+              penalty: 'no',
+            },
+          };
+          break;
+        case 4:
+          newState = {
+            ...state,
+            result4: {
+              result: action.payload.result,
+              penalty: 'no',
+            },
+          };
+          break;
+        case 5:
+          newState = {
+            ...state,
+            result5: {
+              result: action.payload.result,
+              penalty: 'no',
+            },
+          };
+          break;
+        default:
+          break;
+      }
+      return newState;
     },
     setPenalty: (state, action) => {
       const resultNumber = action.payload.number;
-      return {
-        ...state,
-        [`result${resultNumber}`]: {
-          penalty: action.payload.penalty,
-        },
-      };
+      let newState = { ...state };
+      switch (resultNumber) {
+        case 1:
+          newState = {
+            ...state,
+            result1: {
+              result: state.result1.result,
+              penalty: action.payload.penalty,
+            },
+          };
+          break;
+        case 2:
+          newState = {
+            ...state,
+            result2: {
+              result: state.result2.result,
+              penalty: action.payload.penalty,
+            },
+          };
+          break;
+        case 3:
+          newState = {
+            ...state,
+            result3: {
+              result: state.result3.result,
+              penalty: action.payload.penalty,
+            },
+          };
+          break;
+        case 4:
+          newState = {
+            ...state,
+            result4: {
+              result: state.result4.result,
+              penalty: action.payload.penalty,
+            },
+          };
+          break;
+        case 5:
+          newState = {
+            ...state,
+            result5: {
+              result: state.result5.result,
+              penalty: action.payload.penalty,
+            },
+          };
+          break;
+        default:
+          break;
+      }
+      return newState;
     },
   },
 });

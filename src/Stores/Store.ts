@@ -12,7 +12,6 @@ const reducer = combineReducers({
   contestStatus: contestStatus,
 });
 
-const reducers = configureStore({ reducer });
-const store = configureStore({ reducers, middleware: [reduxThunk] });
-
+const store = configureStore({ reducer });
+export type RootState = ReturnType<typeof reducer>;
 export default store;

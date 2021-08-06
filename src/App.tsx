@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/login">
             <Authentication />
           </Route>
-          <Route path="/contest">
+          <Route path="/contest/:type">
             <Contest />
           </Route>
         </Switch>
