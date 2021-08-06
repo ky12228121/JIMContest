@@ -5,6 +5,7 @@ import Authentication from './Pages/Login';
 // import Contest from './components/contestTop';
 import NavBarItem from './Layout/NavbarItem';
 import TopPage from './Pages/TopPage';
+import Contest from './Pages/Contest';
 import { userActions } from './Stores/UserReducer';
 
 const App = () => {
@@ -30,7 +31,9 @@ const App = () => {
           <Route path="/login">
             <Authentication />
           </Route>
-          <Route path="/contest">{/* <Contest /> */}</Route>
+          <Route path="/contest/:type">
+            <Contest />
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>

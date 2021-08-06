@@ -66,7 +66,7 @@ const NavBarItem = () => {
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={() => onClickMove('/contest/cube3')}
+                      onClick={() => onClickMove('/contest/3×3×3')}
                     >
                       <span className="cubing-icon event-333 col-1"></span>
                       <span className="col">3×3×3</span>
@@ -75,7 +75,7 @@ const NavBarItem = () => {
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={() => onClickMove('/contest/oh3')}
+                      onClick={() => onClickMove('/contest/3×3×3 OH')}
                     >
                       <span className="cubing-icon event-333 col-1"></span>
                       <span className="col">3×3×3 OH</span>
@@ -84,7 +84,7 @@ const NavBarItem = () => {
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={() => onClickMove('/contest/square1')}
+                      onClick={() => onClickMove('/contest/Square-1')}
                     >
                       <span className="cubing-icon event-333 col-1"></span>
                       <span className="col">Square-1</span>
