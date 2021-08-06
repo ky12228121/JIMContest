@@ -1,16 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-// import contestResultReducer from './contestResultReducer';
-// import timerReducer from './timerReducer';
+import 'react-redux';
+import reduxThunk from 'redux-thunk';
+
 import userReducer from './UserReducer';
-// import contestStatusReducer from './contestStatusReducer';
+import contestResult from './ContestResultReducer';
+import contestStatus from './ContestStatusReducer';
 const reducer = combineReducers({
-  // contestResult: contestResultReducer,
-  // timer: timerReducer,
   user: userReducer,
-  // contestStatus: contestStatusReducer,
+  contestResult: contestResult,
+  contestStatus: contestStatus,
 });
 
-const store = configureStore({ reducer });
+const reducers = configureStore({ reducer });
+const store = configureStore({ reducers, middleware: [reduxThunk] });
 
 export default store;

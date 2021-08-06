@@ -1,5 +1,4 @@
 export const timerStyle = {
-  backgroundColor: '#CCFFCC',
   height: '40vh',
   fontFamily: 'MSゴシック',
   alignItems: 'center',

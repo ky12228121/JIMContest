@@ -1,21 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { timerStyle } from '../styles/ContestStyle';
+import { AltFlag } from '../types/interfaces';
 import { TimerType } from '../types/types';
+import { altFlagDefault } from '../types/defalut';
+import { useDispatch, useSelector } from 'react-redux';
+import { ContestResultActions } from '../Stores/ContestResultReducer';
+import { ContestStatusActions } from '../Stores/ContestStatusReducer';
 
 const Timer = () => {
-  const [timerText, setTimerText] = useState('Inspection');
+  const dispatch = useDispatch();
+  const { setResult } = ContestResultActions;
+  const { setCube3Increase } = ContestStatusActions;
+  const [timerText, setTimerText] = useState('0.000');
   const [timerState, setTimerState] = useState('init');
   const [longPressFlag, setLongPressFlag] = useState(false);
   const [inspectionTimerId, setInspectionTimerId] = useState<TimerType>(null);
   const [longpressTimerId, setLongpressTimerId] = useState<TimerType>(null);
   const [solveTimerId, setSolveTimerId] = useState<TimerType>(null);
-  const [altFlag, setAltFlag] = useState(false);
+  const [altFlag, setAltFlag] = useState<AltFlag>(altFlagDefault);
   const inspectionStartTime = useRef<Date | null>(null);
   const solveStartTime = useRef<Date | null>(null);
+  const currentNumber = useSelector(
+    (state) => state.contestStatus.cube3.number
+  );
   function inspectionTimer() {
     const currentTime = new Date();
     let startTime = inspectionStartTime.current;
-    console.log(startTime);
     if (startTime === null) {
       startTime = currentTime;
     }
@@ -32,29 +42,7 @@ const Timer = () => {
     const delta = currentTime.getTime() - startTime.getTime();
     setTimerText(timeFormat(delta));
   }
-  function keyDownInit() {
-    const currentTime = new Date();
-    inspectionStartTime.current = currentTime;
-    const id = setInterval(inspectionTimer, 100);
-    setInspectionTimerId(id);
-    setAltFlag(true);
-  }
-  function keyDownInspection() {
-    const id = setTimeout(() => {
-      setLongPressFlag(true);
-      setLongpressTimerId(null);
-    }, 300);
-    setLongpressTimerId(id);
-  }
-  function keyDownCounting() {
-    if (solveTimerId !== null) clearInterval(solveTimerId);
-    const currentTime = new Date();
-    if (solveStartTime.current !== null) {
-      const delta = currentTime.getTime() - solveStartTime.current.getTime();
-      setTimerText(timeFormat(delta));
-      setTimerState('init');
-    }
-  }
+
   function timeFormat(time: number): string {
     const timeFormat = time / 1000;
     const int = Math.floor(timeFormat);
@@ -66,26 +54,53 @@ const Timer = () => {
   }
 
   function handleKeyDownTimer(event: React.KeyboardEvent) {
-    if (!altFlag) {
-      if (timerState === 'init') {
-        if (event.key === ' ') {
-          keyDownInit();
-        }
-      }
-      if (timerState === 'inspection') {
-        if (event.key === ' ') {
-          keyDownInspection();
-        }
-      }
-      if (timerState === 'counting') {
-        keyDownCounting();
-      }
+    if (!altFlag.flag) {
+      setAltFlag({
+        flag: true,
+        event,
+      });
     }
   }
+
+  function handleKeyUpTimer(event: React.KeyboardEvent) {
+    if (altFlag.flag) {
+      setAltFlag({
+        flag: false,
+        event,
+      });
+    }
+  }
+
+  function keyDownInit() {
+    const currentTime = new Date();
+    inspectionStartTime.current = currentTime;
+    const id = setInterval(inspectionTimer, 100);
+    setInspectionTimerId(id);
+  }
+
+  function keyDownInspection() {
+    const id = setTimeout(() => {
+      setLongPressFlag(true);
+      setLongpressTimerId(null);
+    }, 300);
+    setLongpressTimerId(id);
+  }
+
+  function keyDownCounting() {
+    if (solveTimerId !== null) clearInterval(solveTimerId);
+    const currentTime = new Date();
+    if (solveStartTime.current !== null) {
+      const delta = currentTime.getTime() - solveStartTime.current.getTime();
+      setTimerText(timeFormat(delta));
+      dispatch(setResult({ number: 1, result: timeFormat(delta) }));
+      dispatch(setCube3Increase({}));
+    }
+  }
+
   function keyUpInit() {
-    setAltFlag(false);
     setTimerState('inspection');
   }
+
   function keyUpInspection() {
     if (longPressFlag) {
       const currentTime = new Date();
@@ -94,27 +109,66 @@ const Timer = () => {
       const id = setInterval(solveTimer, 1);
       setSolveTimerId(id);
       solveStartTime.current = currentTime;
+      setLongPressFlag(false);
+    }
+    if (longpressTimerId !== null) {
+      clearTimeout(longpressTimerId);
+      setLongpressTimerId(null);
+    }
+  }
+  function keyUpCounting() {
+    setTimerState('init');
+  }
+
+  useEffect(() => {
+    if (altFlag.event === null) {
+      return;
+    }
+    const key = altFlag.event.key;
+    if (altFlag.flag) {
+      if (timerState === 'init') {
+        if (key === ' ') {
+          keyDownInit();
+        }
+      }
+      if (timerState === 'inspection') {
+        if (key === ' ') {
+          keyDownInspection();
+        }
+      }
+      if (timerState === 'counting') {
+        keyDownCounting();
+      }
     } else {
-      if (longpressTimerId !== null) {
-        clearTimeout(longpressTimerId);
-        setLongpressTimerId(null);
+      if (timerState === 'init') {
+        if (key === ' ') {
+          keyUpInit();
+        }
+      }
+      if (timerState === 'inspection') {
+        if (key === ' ') {
+          keyUpInspection();
+        }
+      }
+      if (timerState === 'counting') {
+        keyUpCounting();
       }
     }
-  }
-  function handleKeyUpTimer(event: React.KeyboardEvent) {
-    if (timerState === 'init') {
-      keyUpInit();
-    }
-    if (timerState === 'inspection') {
-      keyUpInspection();
-    }
-  }
+  }, [altFlag]);
+
   return (
     <div className="row mb-3">
       <div
         className="col display-4"
         tabIndex={0}
-        style={timerStyle}
+        style={{
+          ...timerStyle,
+          backgroundColor: longPressFlag
+            ? '#CCFFCC'
+            : timerState === 'inspection'
+            ? '#FFCCFF'
+            : '#DDDDDD',
+        }}
         onKeyDown={handleKeyDownTimer}
         onKeyUp={handleKeyUpTimer}
       >
