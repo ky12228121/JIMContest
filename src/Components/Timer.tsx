@@ -11,7 +11,7 @@ import { RootState } from '../Stores/Store';
 const Timer = () => {
   const dispatch = useDispatch();
   const { setResult } = ContestResultActions;
-  const { setNumberIncrease } = ContestStatusActions;
+  const { setNumberIncrease, setFinish } = ContestStatusActions;
   const [timerText, setTimerText] = useState('0.000');
   const [timerState, setTimerState] = useState('init');
   const [longPressFlag, setLongPressFlag] = useState(false);
@@ -19,9 +19,11 @@ const Timer = () => {
   const [longpressTimerId, setLongpressTimerId] = useState<TimerType>(null);
   const [solveTimerId, setSolveTimerId] = useState<TimerType>(null);
   const [altFlag, setAltFlag] = useState<AltFlag>(altFlagDefault);
+  const [timerDisabled, setTimerDisabled] = useState(false);
   const inspectionStartTime = useRef<Date | null>(null);
   const solveStartTime = useRef<Date | null>(null);
-  const currentNumber = useSelector((state: RootState) => state.contestStatus);
+  const currentState = useSelector((state: RootState) => state.contestStatus);
+  const timerRef = useRef(null);
   function inspectionTimer() {
     const currentTime = new Date();
     let startTime = inspectionStartTime.current;
@@ -93,11 +95,17 @@ const Timer = () => {
       setTimerText(timeFormat(delta));
       dispatch(
         setResult({
-          number: currentNumber.number,
+          number: currentState.number,
           result: timeFormat(delta),
         })
       );
-      dispatch(setNumberIncrease({}));
+      if (currentState.number < 5) {
+        dispatch(setNumberIncrease({}));
+      } else {
+        dispatch(setFinish({}));
+        setTimerDisabled(true);
+        timerRef.current.blur();
+      }
     }
   }
 
@@ -172,9 +180,11 @@ const Timer = () => {
             : timerState === 'inspection'
             ? '#FFCCFF'
             : '#EEEEEE',
+          pointerEvents: timerDisabled ? 'none' : 'auto',
         }}
         onKeyDown={handleKeyDownTimer}
         onKeyUp={handleKeyUpTimer}
+        ref={timerRef}
       >
         {timerText}
       </div>
