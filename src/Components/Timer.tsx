@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ContestResultActions } from '../Stores/ContestResultReducer';
 import { ContestStatusActions } from '../Stores/ContestStatusReducer';
 import { RootState } from '../Stores/Store';
+import FinishView from './FInishView';
 
 const Timer = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Timer = () => {
   const inspectionStartTime = useRef<Date | null>(null);
   const solveStartTime = useRef<Date | null>(null);
   const currentState = useSelector((state: RootState) => state.contestStatus);
-  const timerRef = useRef(null);
+  const timerRef = useRef<HTMLDivElement | null>(null);
   function inspectionTimer() {
     const currentTime = new Date();
     let startTime = inspectionStartTime.current;
@@ -95,16 +96,19 @@ const Timer = () => {
       setTimerText(timeFormat(delta));
       dispatch(
         setResult({
-          number: currentState.number,
+          number: currentState.number + 1,
           result: timeFormat(delta),
         })
       );
-      if (currentState.number < 5) {
+      if (currentState.number < 4) {
         dispatch(setNumberIncrease({}));
       } else {
         dispatch(setFinish({}));
+        dispatch(setNumberIncrease({}));
         setTimerDisabled(true);
-        timerRef.current.blur();
+        if (timerRef.current !== null) {
+          timerRef.current.blur();
+        }
       }
     }
   }
@@ -170,24 +174,28 @@ const Timer = () => {
 
   return (
     <div className="row mb-3">
-      <div
-        className="col display-4"
-        tabIndex={0}
-        style={{
-          ...timerStyle,
-          backgroundColor: longPressFlag
-            ? '#CCFFCC'
-            : timerState === 'inspection'
-            ? '#FFCCFF'
-            : '#EEEEEE',
-          pointerEvents: timerDisabled ? 'none' : 'auto',
-        }}
-        onKeyDown={handleKeyDownTimer}
-        onKeyUp={handleKeyUpTimer}
-        ref={timerRef}
-      >
-        {timerText}
-      </div>
+      {currentState.isFinish ? (
+        <FinishView average={10.0} />
+      ) : (
+        <div
+          className="col display-4"
+          tabIndex={0}
+          style={{
+            ...timerStyle,
+            backgroundColor: longPressFlag
+              ? '#CCFFCC'
+              : timerState === 'inspection'
+              ? '#FFCCFF'
+              : '#EEEEEE',
+            pointerEvents: timerDisabled ? 'none' : 'auto',
+          }}
+          onKeyDown={handleKeyDownTimer}
+          onKeyUp={handleKeyUpTimer}
+          ref={timerRef}
+        >
+          {timerText}
+        </div>
+      )}
     </div>
   );
 };

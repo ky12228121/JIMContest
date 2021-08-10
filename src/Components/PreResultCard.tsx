@@ -18,9 +18,6 @@ const PreResultCard = (props: PreResultCardProps) => {
   const { setPenalty } = ContestResultActions;
   const currentPenalty = result.penalty;
   function handleClickDnf() {
-    if (currentNumber <= no) {
-      return;
-    }
     if (currentPenalty === 'dnf') {
       dispatch(setPenalty({ number: no, penalty: 'no' }));
     } else {
@@ -28,9 +25,6 @@ const PreResultCard = (props: PreResultCardProps) => {
     }
   }
   function handleClickPlus2() {
-    if (currentNumber <= no) {
-      return;
-    }
     if (currentPenalty === 'dnf') {
       return;
     } else if (currentPenalty === 'plus2') {
@@ -52,7 +46,7 @@ const PreResultCard = (props: PreResultCardProps) => {
   return (
     <div
       className="card text-center mx-2 px-0 col"
-      style={currentNumber <= no ? inactiveCardStyle : {}}
+      style={currentNumber < no ? inactiveCardStyle : {}}
     >
       <div className="card-header h6">{`#${no}`}</div>
       <div className="card-body py-3">
@@ -73,7 +67,7 @@ const PreResultCard = (props: PreResultCardProps) => {
                 : inactiveDNFButtonClass
             }
             onClick={handleClickDnf}
-            disabled={currentNumber <= no}
+            disabled={currentNumber < no}
           >
             DNF
           </button>
@@ -84,7 +78,7 @@ const PreResultCard = (props: PreResultCardProps) => {
                 : inactivePlus2ButtonClass
             }
             onClick={handleClickPlus2}
-            disabled={currentNumber <= no}
+            disabled={currentNumber < no}
           >
             +2
           </button>

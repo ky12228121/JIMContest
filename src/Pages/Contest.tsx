@@ -24,7 +24,9 @@ const Contest = () => {
           <div className="col h4">{type}</div>
         </div>
         <div className="row" style={scrambleStyle}>
-          <div className="col h3 text-center">{`#${currentNumber.number}`}</div>
+          <div className="col h3 text-center">{`#${
+            currentNumber.number + 1
+          }`}</div>
         </div>
         <div className="row" style={scrambleStyle}>
           <div className="col h4 text-center">{scramble}</div>

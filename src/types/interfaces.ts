@@ -14,3 +14,7 @@ export interface AltFlag {
 export interface ContestParams {
   type: string;
 }
+
+export interface FinishViewProps {
+  average: number;
+}
