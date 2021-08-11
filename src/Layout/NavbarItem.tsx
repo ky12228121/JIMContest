@@ -1,10 +1,6 @@
-import React from 'react';
-// import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useHistory } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 const NavBarItem = () => {
   const history = useHistory();
   const onClickMove = (url: string) => {

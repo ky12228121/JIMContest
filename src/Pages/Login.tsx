@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { userActions } from '../Stores/UserReducer';
 
 const Authentication = () => {

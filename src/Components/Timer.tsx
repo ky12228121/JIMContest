@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { timerStyle } from '../styles/ContestStyle';
-import { AltFlag } from '../types/interfaces';
-import { TimerType } from '../types/types';
-import { altFlagDefault } from '../types/defalut';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContestResultActions } from '../Stores/ContestResultReducer';
 import { ContestStatusActions } from '../Stores/ContestStatusReducer';
 import { RootState } from '../Stores/Store';
+import { timerStyle } from '../styles/ContestStyle';
+import { altFlagDefault } from '../types/defalut';
+import { AltFlag } from '../types/interfaces';
+import { TimerType } from '../types/types';
+import { timeFormatFromMs } from '../util/utility';
 import FinishView from './FInishView';
 
 const Timer = () => {
@@ -42,17 +43,7 @@ const Timer = () => {
       startTime = currentTime;
     }
     const delta = currentTime.getTime() - startTime.getTime();
-    setTimerText(timeFormat(delta));
-  }
-
-  function timeFormat(time: number): string {
-    const timeFormat = time / 1000;
-    const int = Math.floor(timeFormat);
-    const delta = timeFormat - int;
-    const point =
-      (Math.floor(delta * Math.pow(10, 3)) / Math.pow(10, 3)) * 1000;
-    const formatPoint = ('000' + point).slice(-3);
-    return `${int}.${formatPoint}`;
+    setTimerText(timeFormatFromMs(delta));
   }
 
   function handleKeyDownTimer(event: React.KeyboardEvent) {
@@ -93,11 +84,11 @@ const Timer = () => {
     const currentTime = new Date();
     if (solveStartTime.current !== null) {
       const delta = currentTime.getTime() - solveStartTime.current.getTime();
-      setTimerText(timeFormat(delta));
+      setTimerText(timeFormatFromMs(delta));
       dispatch(
         setResult({
           number: currentState.number + 1,
-          result: timeFormat(delta),
+          result: timeFormatFromMs(delta),
         })
       );
       if (currentState.number < 4) {
@@ -175,7 +166,7 @@ const Timer = () => {
   return (
     <div className="row mb-3">
       {currentState.isFinish ? (
-        <FinishView average={10.0} />
+        <FinishView />
       ) : (
         <div
           className="col display-4"

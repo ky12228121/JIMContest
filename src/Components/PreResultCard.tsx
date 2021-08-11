@@ -4,9 +4,9 @@ import { RootState } from '../Stores/Store';
 import {
   activeDNFButtonClass,
   activePlus2ButtonClass,
+  inactiveCardStyle,
   inactiveDNFButtonClass,
   inactivePlus2ButtonClass,
-  inactiveCardStyle,
 } from '../styles/PreResultCardStyle';
 import { PreResultCardProps } from '../types/interfaces';
 

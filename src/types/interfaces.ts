@@ -1,5 +1,5 @@
 import React from 'react';
-interface Result {
+export interface Result {
   result: string;
   penalty: string;
 }
@@ -13,8 +13,4 @@ export interface AltFlag {
 }
 export interface ContestParams {
   type: string;
-}
-
-export interface FinishViewProps {
-  average: number;
 }
