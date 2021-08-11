@@ -7,6 +7,8 @@ import NavBarItem from './Layout/NavbarItem';
 import TopPage from './Pages/TopPage';
 import Contest from './Pages/Contest';
 import { userActions } from './Stores/UserReducer';
+import AllResult from './Pages/AllResult';
+import PersonalResult from './Pages/PersonalResult';
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -33,6 +35,12 @@ const App = () => {
           </Route>
           <Route path="/contest/:type">
             <Contest />
+          </Route>
+          <Route path="/result/all">
+            <AllResult />
+          </Route>
+          <Route path="/result/personal">
+            <PersonalResult />
           </Route>
         </Switch>
       </BrowserRouter>

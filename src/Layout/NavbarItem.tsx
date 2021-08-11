@@ -91,15 +91,15 @@ const NavBarItem = () => {
 
               <li
                 className="nav-item btn btn-dark"
-                onClick={() => onClickMove('/contest/result/all')}
+                onClick={() => onClickMove('/result/all')}
               >
                 <div>All results</div>
               </li>
               <li
                 className="nav-item btn btn-dark"
-                onClick={() => onClickMove('/contest/result/personal')}
+                onClick={() => onClickMove('/result/personal')}
               >
-                <div>All resultPersonal result</div>
+                <div>Personal result</div>
               </li>
             </ul>
             <ul className="navbar-navmb-2 mb-lg-0">

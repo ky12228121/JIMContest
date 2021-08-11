@@ -1,11 +1,11 @@
 import React from 'react';
-export interface Result {
+export interface PreResult {
   result: string;
   penalty: string;
 }
 export interface PreResultCardProps {
   no: number;
-  result: Result;
+  result: PreResult;
 }
 export interface AltFlag {
   flag: boolean;
@@ -13,4 +13,14 @@ export interface AltFlag {
 }
 export interface ContestParams {
   type: string;
+}
+interface Record {
+  name: string;
+  type: string;
+  result: PreResult[];
+  best: string;
+  average: string;
+}
+export interface ResultTableProps {
+  data: Record[];
 }
