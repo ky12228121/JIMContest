@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
 import 'react-redux';
-import reduxThunk from 'redux-thunk';
-
-import userReducer from './UserReducer';
+import { combineReducers } from 'redux';
 import contestResult from './ContestResultReducer';
 import contestStatus from './ContestStatusReducer';
+import userReducer from './UserReducer';
+
 const reducer = combineReducers({
   user: userReducer,
   contestResult: contestResult,

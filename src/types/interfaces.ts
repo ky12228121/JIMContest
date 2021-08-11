@@ -1,5 +1,5 @@
 import React from 'react';
-interface Result {
+export interface Result {
   result: string;
   penalty: string;
 }
