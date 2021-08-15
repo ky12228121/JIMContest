@@ -9,8 +9,8 @@ export const tableBodyBorderStyle = {
   borderLeft: '2px double black',
 };
 export const resultBestStyle = {
-  backgroundColor: '#CCFFCC',
+  color: '#009900',
 };
 export const resultWorstStyle = {
-  backgroundColor: '#FFCCFF',
+  color: '#FF00FF',
 };

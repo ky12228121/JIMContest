@@ -21,6 +21,16 @@ interface Record {
   best: string;
   average: string;
 }
+interface RankingRecord {
+  name: string;
+  type: string;
+  time: string;
+  contest: string;
+}
 export interface ResultTableProps {
   data: Record[];
+}
+export interface RankingTableProps {
+  data: RankingRecord[];
+  recordType: string;
 }

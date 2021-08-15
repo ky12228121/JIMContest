@@ -9,6 +9,7 @@ import Contest from './Pages/Contest';
 import { userActions } from './Stores/UserReducer';
 import AllResult from './Pages/AllResult';
 import PersonalResult from './Pages/PersonalResult';
+import Ranking from './Pages/Ranking';
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -41,6 +42,9 @@ const App = () => {
           </Route>
           <Route path="/result/personal">
             <PersonalResult />
+          </Route>
+          <Route path="/result/ranking">
+            <Ranking />
           </Route>
         </Switch>
       </BrowserRouter>

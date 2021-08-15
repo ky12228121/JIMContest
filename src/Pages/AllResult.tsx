@@ -1,3 +1,4 @@
+import AllResultFilter from '../Components/AllResultFilter';
 import ResultTable from '../Components/ResultTable';
 
 const testData = [
@@ -91,8 +92,9 @@ const AllResult = () => {
     <>
       <div className="container">
         <div className="row mt-2">
-          <div className="col h1 text-center">コンテストNo.{'01'}全結果</div>
+          <div className="col h3 text-center">コンテストNo.{'01'}全結果</div>
         </div>
+        <AllResultFilter />
         <div className="row mt-2">
           <div className="col-12">
             <ul className="nav nav-tabs border-0" id="nav-tab" role="tablist">
