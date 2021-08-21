@@ -1,42 +1,22 @@
 import ResultTable from '../Components/ResultTable';
+import TodayResultCard from '../Components/TodayResultCard';
 
 const PersonalResult = () => {
   return (
     <>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row mt-2">
-          <div className="col h1 text-center">コンテストNo.{'02'}全結果</div>
+          <div className="col h3 text-center">個人記録</div>
         </div>
-        <div className="row mt-2">
-          <div className="col-12">
-            <div className="nav nav-tabs border-0" id="nav-tab" role="tablist">
-              <a
-                className="nav-item nav-link active"
-                data-toggle="tab"
-                href="#cube3"
-              >
-                3×3×3
-              </a>
-              <a className="nav-item nav-link" data-toggle="tab" href="#oh3">
-                3×3×3 OH
-              </a>
-              <a className="nav-item nav-link" data-toggle="tab" href="#sq1">
-                Square-1
-              </a>
-            </div>
+        <div className="row mt-2 justify-content-evenly">
+          <div className="col-4">
+            <TodayResultCard />
           </div>
-          <div className="col-12">
-            <div className="tab-content" id="nav-tabContent">
-              <div className="tab-pane fade show active" id="cube3">
-                {/* <ResultTable data={cube3List} /> */}
-              </div>
-              <div className="tab-pane fade" id="oh3">
-                {/* <ResultTable data={oh3List} /> */}
-              </div>
-              <div className="tab-pane fade" id="sq1">
-                {/* <ResultTable data={square1List} /> */}
-              </div>
-            </div>
+          <div className="col-4">
+            <TodayResultCard />
+          </div>
+          <div className="col-4">
+            <TodayResultCard />
           </div>
         </div>
       </div>

@@ -5,17 +5,6 @@ const RankingFilter = () => {
     <div className="row py-2 my-2 px-2 bg-light">
       <div className="col-3">
         <div className=" form-floating">
-          <select className="form-select" id="contestSelect">
-            <option selected value="single">
-              単発
-            </option>
-            <option value="average">平均</option>
-          </select>
-          <label htmlFor="contestSelect">記録</label>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className=" form-floating">
           <select className="form-select" id="contestType">
             <option selected>全種目</option>
             <option value={CUBE3}>{CUBE3}</option>
