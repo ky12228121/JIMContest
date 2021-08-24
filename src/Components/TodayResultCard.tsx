@@ -50,13 +50,13 @@ const TodayResultCard = () => {
                 <div className="h5 text-center">ランキング</div>
               </div>
               <div className="row">
-                <div className="h6 text-center">単発：7</div>
+                <div className="h6 text-center">単発：7位</div>
               </div>
               <div className="row">
-                <div className="h6 text-center">平均：7</div>
+                <div className="h6 text-center">平均：7位</div>
               </div>
               <div className="row justify-content-center my-2">
-                <button className="col-7 btn btn-sm btn-outline-info">
+                <button className="col-7 btn btn-sm btn-outline-primary">
                   スクランブル
                 </button>
               </div>
