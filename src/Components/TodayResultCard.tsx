@@ -4,7 +4,9 @@ const TodayResultCard = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col text-center h4">{CUBE3}</div>
+        <div className="col text-center">
+          <h4 className="bg-info m-0">{CUBE3}</h4>
+        </div>
       </div>
       <div className="card">
         <div className="card-header h5">
