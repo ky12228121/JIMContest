@@ -1,5 +1,4 @@
 import { Auth } from 'aws-amplify';
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 const NavBarItem = () => {
   const history = useHistory();
@@ -48,7 +47,7 @@ const NavBarItem = () => {
                 className="nav-item btn btn-dark"
                 onClick={() => onClickMove('/')}
               >
-                <div>Home</div>
+                <div>トップ</div>
               </li>
               <li className="nav-item dropdown btn btn-dark">
                 <div
@@ -56,7 +55,7 @@ const NavBarItem = () => {
                   role="button"
                   data-bs-toggle="dropdown"
                 >
-                  Contest
+                  コンテスト
                 </div>
                 <ul className="dropdown-menu">
                   <li>
@@ -88,18 +87,34 @@ const NavBarItem = () => {
                   </li>
                 </ul>
               </li>
-
-              <li
-                className="nav-item btn btn-dark"
-                onClick={() => onClickMove('/contest/result/all')}
-              >
-                <div>All results</div>
-              </li>
-              <li
-                className="nav-item btn btn-dark"
-                onClick={() => onClickMove('/contest/result/personal')}
-              >
-                <div>All resultPersonal result</div>
+              <li className="nav-item dropdown btn btn-dark">
+                <div
+                  className="dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  結果
+                </div>
+                <ul className="dropdown-menu">
+                  <li
+                    className="dropdown-item"
+                    onClick={() => onClickMove('/result/all')}
+                  >
+                    <div>コンテスト結果</div>
+                  </li>
+                  <li
+                    className="dropdown-item"
+                    onClick={() => onClickMove('/result/personal')}
+                  >
+                    <div>個人記録</div>
+                  </li>
+                  <li
+                    className="dropdown-item"
+                    onClick={() => onClickMove('/result/ranking')}
+                  >
+                    <div>ランキング</div>
+                  </li>
+                </ul>
               </li>
             </ul>
             <ul className="navbar-navmb-2 mb-lg-0">
@@ -107,7 +122,7 @@ const NavBarItem = () => {
                 className="nav-item btn btn-outline-light"
                 onClick={onClickLogout}
               >
-                <div>Sign out</div>
+                <div>サインアウト</div>
               </li>
             </ul>
           </div>
