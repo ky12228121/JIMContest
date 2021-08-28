@@ -34,3 +34,7 @@ export interface RankingTableProps {
   data: RankingRecord[];
   recordType: string;
 }
+
+export interface PastRecordTableProps {
+  type: string;
+}

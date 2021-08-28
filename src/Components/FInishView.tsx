@@ -26,7 +26,7 @@ const FinishView = () => {
         }}
       >
         <div className="col-12 text-center">
-          {`Ao5: ${average}`}
+          {`ao5: ${average}`}
           <br />
           <button className="btn btn-primary btn-lg">結果送信</button>
         </div>

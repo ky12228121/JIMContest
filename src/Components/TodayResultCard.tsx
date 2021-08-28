@@ -62,6 +62,11 @@ const TodayResultCard = () => {
                   スクランブル
                 </button>
               </div>
+              <div className="row justify-content-center my-2">
+                <button className="col-7 btn btn-sm btn-outline-primary">
+                  詳細
+                </button>
+              </div>
             </div>
           </div>
         </div>
