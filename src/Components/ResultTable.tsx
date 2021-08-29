@@ -1,5 +1,5 @@
 import { ResultTableProps } from '../types/interfaces';
-import { timeFormat } from '../util/utility';
+import { timeFormat } from '../utils/utility';
 import {
   resultBestStyle,
   resultTableStyle,

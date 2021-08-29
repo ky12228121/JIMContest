@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../Stores/Store';
+import { RootState } from '../stores/Store';
 import { finishViewStyle } from '../styles/ContestStyle';
-import { calcAverage, timeFormat } from '../util/utility';
+import { calcAverage, timeFormat } from '../utils/utility';
 
 const FinishView = () => {
   const [average, setAverage] = useState('');

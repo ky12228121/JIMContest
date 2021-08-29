@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { useHistory } from 'react-router-dom';
-import LastRecordTable from '../Components/LastRecordTable';
-import PastRankingTable from '../Components/PastRankingTable';
-import PastRecordTable from '../Components/PastRecordTable';
-import TodayResultCard from '../Components/TodayResultCard';
+import LastRecordTable from '../components/LastRecordTable';
+import PastRankingTable from '../components/PastRankingTable';
+import PastRecordTable from '../components/PastRecordTable';
+import TodayResultCard from '../components/TodayResultCard';
 import {
   activePastRecordButtonClass,
   inactivePastRecordButtonClass,

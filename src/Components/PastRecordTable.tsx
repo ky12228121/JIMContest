@@ -1,5 +1,5 @@
 import { PastRecordTableProps } from '../types/interfaces';
-import { CUBE3, OH, SQ1 } from '../util/constant';
+import { CUBE3, OH, SQ1 } from '../utils/constant';
 
 const PastRecordTable = (props: PastRecordTableProps) => {
   const { type } = props;

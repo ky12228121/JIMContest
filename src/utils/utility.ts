@@ -1,5 +1,5 @@
 import { PreResult } from '../types/interfaces';
-import { MAX } from '../util/constant';
+import { MAX } from './constant';
 
 export function timeFormatFromMs(time: number): string {
   const timeFormat = time / 1000;

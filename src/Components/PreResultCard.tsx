@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ContestResultActions } from '../Stores/ContestResultReducer';
-import { RootState } from '../Stores/Store';
+import { ContestResultActions } from '../stores/ContestResultReducer';
+import { RootState } from '../stores/Store';
 import {
   activeDNFButtonClass,
   activePlus2ButtonClass,

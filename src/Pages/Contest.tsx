@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import PreResult from '../Components/PreResult';
-import Timer from '../Components/Timer';
-import { RootState } from '../Stores/Store';
+import PreResult from '../components/PreResult';
+import Timer from '../components/Timer';
+import { RootState } from '../stores/Store';
 import { scrambleStyle, spacingStyle } from '../styles/ContestStyle';
 import { ContestParams } from '../types/interfaces';
 const Contest = () => {

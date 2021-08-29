@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../Stores/Store';
+import { RootState } from '../stores/Store';
 import PreResultCard from './PreResultCard';
 const PreResult = () => {
   const results = useSelector((state: RootState) => state.contestResult);

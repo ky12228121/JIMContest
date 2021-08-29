@@ -1,4 +1,4 @@
-import { CUBE3 } from '../util/constant';
+import { CUBE3 } from '../utils/constant';
 
 const TodayResultCard = () => {
   return (

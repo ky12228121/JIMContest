@@ -1,7 +1,7 @@
-import AllResultFilter from '../Components/AllResultFilter';
-import RankingFilter from '../Components/RankingFilter';
-import RankingTable from '../Components/RankingTable';
-import ResultTable from '../Components/ResultTable';
+import AllResultFilter from '../components/AllResultFilter';
+import RankingFilter from '../components/RankingFilter';
+import RankingTable from '../components/RankingTable';
+import ResultTable from '../components/ResultTable';
 
 const testData = [
   {

@@ -1,4 +1,4 @@
-import { CUBE3, OH, SQ1 } from '../util/constant';
+import { CUBE3, OH, SQ1 } from '../utils/constant';
 
 const PastRankingTable = () => {
   return (

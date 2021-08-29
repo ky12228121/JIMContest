@@ -1,5 +1,5 @@
-import AllResultFilter from '../Components/AllResultFilter';
-import ResultTable from '../Components/ResultTable';
+import AllResultFilter from '../components/AllResultFilter';
+import ResultTable from '../components/ResultTable';
 
 const testData = [
   {

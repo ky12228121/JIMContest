@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-import Authentication from './Pages/Login';
+import Authentication from './pages/Login';
 // import Contest from './components/contestTop';
-import NavBarItem from './Layout/NavbarItem';
-import TopPage from './Pages/TopPage';
-import Contest from './Pages/Contest';
-import { userActions } from './Stores/UserReducer';
-import AllResult from './Pages/AllResult';
-import PersonalResult from './Pages/PersonalResult';
-import Ranking from './Pages/Ranking';
+import NavBarItem from './layouts/NavbarItem';
+import TopPage from './pages/TopPage';
+import Contest from './pages/Contest';
+import { userActions } from './stores/UserReducer';
+import AllResult from './pages/AllResult';
+import PersonalResult from './pages/PersonalResult';
+import Ranking from './pages/Ranking';
 
 const App = () => {
   // const dispatch = useDispatch();
