@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "jimcontest",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authjimcontest1432b529",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

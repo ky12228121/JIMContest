@@ -10,6 +10,11 @@
       "StackName": "amplify-jimcontest-dev-10822",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:586326590431:stack/amplify-jimcontest-dev-10822/39ac7320-ebd0-11eb-9358-066c9de695cb",
       "AmplifyAppId": "dtsd0ptxbhu0h"
+    },
+    "categories": {
+      "auth": {
+        "jimcontest1432b529": {}
+      }
     }
   }
 }
