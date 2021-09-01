@@ -1,17 +1,27 @@
-type Task
-  @model
-  @auth(
-    rules: [
-      { allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete] }
-      { allow: groups, groups: ["Employees"], queries: [get, list], mutations: null }
-    ]
-  ) {
-  id: ID!
-  title: String!
-  description: String
-  status: String
+type Contests @model {
+  contest_id: ID!
+  cube3_entry_count: Int!
+  oh_entry_count: Int!
+  sq1_entry_count: Int!
+  current_flag: Boolean!
+  start_date: String!
+  end_date: String!
 }
-type PrivateNote @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  content: String!
+
+# type PreResults @model
+#   @auth(rules: [{ allow: owner }]) 
+#   @key(fields: ["user_id", "contest_type", "test_columns"]) {
+#   user_id: ID!
+#   contest_type: String!
+#   test_columns: String!
+#   no1: ResultSchema!
+#   no2: ResultSchema
+#   no3: ResultSchema
+#   no4: ResultSchema
+#   no5: ResultSchema
+# }
+
+type ResultSchema {
+  result: String!
+  penalty: String!
 }
