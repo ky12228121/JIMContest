@@ -1,25 +1,71 @@
-type Contests @model {
-  contest_id: ID!
-  cube3_entry_count: Int!
-  oh_entry_count: Int!
-  sq1_entry_count: Int!
-  current_flag: Boolean!
+type Contests @model 
+  @key(fields: ["contest_type", "id"]) 
+  @key(name: "getByCurrentFlag", fields:["current_flag"], queryField: "getByCurrentFlag") {
+  id: String!
+  events: [Events] @connection(keyName: "byContest", fields: ["id"])
+  contest_number: String!
+  contest_type: String!
+  current_flag: Int!
   start_date: String!
   end_date: String!
 }
 
-# type PreResults @model
-#   @auth(rules: [{ allow: owner }]) 
-#   @key(fields: ["user_id", "contest_type", "test_columns"]) {
-#   user_id: ID!
-#   contest_type: String!
-#   test_columns: String!
-#   no1: ResultSchema!
-#   no2: ResultSchema
-#   no3: ResultSchema
-#   no4: ResultSchema
-#   no5: ResultSchema
-# }
+type Events @model 
+  @key(fields: ["event_type", "contest_id"])
+  @key(name: "byContest", fields: ["contest_id", "event_type", "scramble_id", "entry_count"]) {
+  id: String!
+  contest_id: String!
+  contest: Contests @connection(fields: ["contest_id"])
+  event_type: String!
+  scramble_id: String!
+  scramble: Scrambles @connection(fields: ["scramble_id"])
+  entry_count: Int!
+}
+
+type PreResults @model
+  @auth(rules: [{ allow: owner }]) 
+  @key(fields: ["event_type", "user_id"])
+  @key(name: "getByUser" fields: ["user_id"]) {
+  id: String!
+  user_id: String!
+  event_type: String!
+  no1: ResultSchema!
+  no2: ResultSchema
+  no3: ResultSchema
+  no4: ResultSchema
+  no5: ResultSchema
+}
+
+type Users @model {
+  id: String!
+  username: String!
+  pre_results: [PreResults] @connection(keyName: "getByUser", fields: ["id"])
+  results: [Results] @connection(keyName: "getByUser", fields: ["id"])
+}
+
+type Scrambles @model {
+  id: String!
+  evnet_id: String!
+  scramble: String!
+}
+
+type Results @model 
+  @key(fields: ["contest_type", "contest_id", "best", "average", "user_id"]) 
+  @key(name: "getByUser", fields: ["user_id"], queryField: "getByUser") {
+  id: String!
+  contest_id: String!
+  contest: Contests @connection(fields: ["contest_id"])
+  contest_type: String!
+  no1: ResultSchema!
+  no2: ResultSchema!
+  no3: ResultSchema!
+  no4: ResultSchema!
+  no5: ResultSchema!
+  best: String!
+  average: String!
+  user_id: String!
+  user: Users @connection(fields: ["user_id"])
+}
 
 type ResultSchema {
   result: String!
