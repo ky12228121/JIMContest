@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-amplify/ui-react": "^1.2.7",
+    "@aws-amplify/ui-react": "^1.2.13",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -14,7 +14,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.8",
     "@types/recharts": "^2.0.0",
-    "aws-amplify": "^4.2.1",
+    "aws-amplify": "^4.2.7",
     "bootstrap": "^5.0.2",
     "eslint-plugin-react": "^7.24.0",
     "react": "^17.0.2",

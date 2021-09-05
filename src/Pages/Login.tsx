@@ -10,6 +10,7 @@ const Authentication = () => {
   const { setUsername } = userActions;
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [registerEmail, setRegisterEmail] = useState('');
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const login = (e: any) => {
@@ -38,7 +39,13 @@ const Authentication = () => {
       setRegisterPassword('');
       return;
     }
-    Auth.signUp(registerUsername, registerPassword)
+    Auth.signUp({
+      username: registerUsername,
+      password: registerPassword,
+      attributes: {
+        email: registerEmail,
+      },
+    })
       .then(() => {
         alert('登録完了');
         window.location.reload();
@@ -67,6 +74,10 @@ const Authentication = () => {
     e.preventDefault();
     setLoginPassword(e.currentTarget.value);
   };
+  const onChangeRegisterEmail = (e: any) => {
+    e.preventDefault();
+    setRegisterEmail(e.currentTarget.value);
+  };
   const onChangeRegisterUsername = (e: any) => {
     e.preventDefault();
     setRegisterUsername(e.currentTarget.value);
@@ -82,7 +93,7 @@ const Authentication = () => {
           <div className="col-6 offset-3">
             <div className="nav nav-tabs row text-center">
               <a
-                className="active col nav-link"
+                className="col nav-link"
                 id="login-form-link"
                 data-toggle="tab"
                 href="#nav-login"
@@ -91,7 +102,7 @@ const Authentication = () => {
               </a>
               <a
                 id="register-form-link"
-                className="col  nav-link"
+                className="col active nav-link"
                 data-toggle="tab"
                 href="#nav-register"
               >
@@ -99,7 +110,7 @@ const Authentication = () => {
               </a>
             </div>
             <div className="tab-content mt-4">
-              <div className="tab-pane fade show active" id="nav-login">
+              <div className="tab-pane fade" id="nav-login">
                 <form>
                   <div className="form-group">
                     <label>Username</label>
@@ -133,8 +144,18 @@ const Authentication = () => {
                   </div>
                 </form>
               </div>
-              <div className="tab-pane fade" id="nav-register">
+              <div className="tab-pane fade show active" id="nav-register">
                 <form>
+                  <div className="form-group">
+                    <label>E-mail</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      onChange={(e) => onChangeRegisterEmail(e)}
+                      value={registerEmail}
+                      placeholder="E-mail"
+                    />
+                  </div>
                   <div className="form-group">
                     <label>Username</label>
                     <input

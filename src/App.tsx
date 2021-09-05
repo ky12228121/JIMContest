@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import Authentication from './pages/Login';
-// import Contest from './components/contestTop';
 import NavBarItem from './layouts/NavbarItem';
 import TopPage from './pages/TopPage';
 import Contest from './pages/Contest';
@@ -12,23 +11,23 @@ import PersonalResult from './pages/PersonalResult';
 import Ranking from './pages/Ranking';
 
 const App = () => {
-  // const dispatch = useDispatch();
-  // const { setUsername } = userActions;
-  // const username = useSelector((state: any) => state.user.username);
-  // const localUsername = localStorage.username;
-  // console.log(localUsername);
-  // if (username === '' && localUsername) {
-  //   dispatch(setUsername(localUsername));
-  // }
+  const dispatch = useDispatch();
+  const { setUsername } = userActions;
+  const username = useSelector((state: any) => state.user.username);
+  const localUsername = localStorage.username;
+  console.log(localUsername);
+  if (username === '' && localUsername) {
+    dispatch(setUsername(localUsername));
+  }
 
   return (
     <div>
       <BrowserRouter>
-        {/* {username ? <NavBarItem /> : <div></div>} */}
+        {username ? <NavBarItem /> : <div></div>}
         <NavBarItem />
         <Switch>
           <Route exact path="/">
-            {/* {localUsername ? <div /> : <Redirect to="/login" />} */}
+            {localUsername ? <div /> : <Redirect to="/login" />}
             <TopPage />
           </Route>
           <Route path="/login">
