@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import Authentication from './pages/Login';
@@ -9,29 +8,25 @@ import { userActions } from './stores/UserReducer';
 import AllResult from './pages/AllResult';
 import PersonalResult from './pages/PersonalResult';
 import Ranking from './pages/Ranking';
-
 const App = () => {
   const dispatch = useDispatch();
   const { setUsername } = userActions;
   const username = useSelector((state: any) => state.user.username);
   const localUsername = localStorage.username;
-  console.log(localUsername);
-  if (username === '' && localUsername) {
+  if (username === '' && localUsername !== '') {
     dispatch(setUsername(localUsername));
   }
-
   return (
     <div>
       <BrowserRouter>
-        {username ? <NavBarItem /> : <div></div>}
-        <NavBarItem />
+        {localUsername ? <NavBarItem /> : <div></div>}
         <Switch>
           <Route exact path="/">
             {localUsername ? <div /> : <Redirect to="/login" />}
             <TopPage />
           </Route>
           <Route path="/login">
-            <Authentication />
+            {!localUsername ? <Authentication /> : <Redirect to="/" />}
           </Route>
           <Route path="/contest/:type">
             <Contest />

@@ -1,9 +1,19 @@
 {
   "auth": {
-    "jimcontest1432b529": {
+    "jimcontest44ead4df44ead4df": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "jimcontest44ead4df44ead4dfPreSignup",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false,
       "frontendAuthConfig": {
         "loginMechanisms": [
@@ -14,7 +24,11 @@
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_UPPERCASE",
+            "REQUIRES_NUMBERS"
+          ]
         },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -32,12 +46,19 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authjimcontest1432b529"
+              "userPoolId": "authjimcontest44ead4df44ead4df"
             }
           },
           "additionalAuthenticationProviders": []
         }
       }
+    }
+  },
+  "function": {
+    "jimcontest44ead4df44ead4dfPreSignup": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   }
 }
