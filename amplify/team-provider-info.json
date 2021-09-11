@@ -10,6 +10,17 @@
       "StackName": "amplify-jimcontest-dev-10822",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:586326590431:stack/amplify-jimcontest-dev-10822/39ac7320-ebd0-11eb-9358-066c9de695cb",
       "AmplifyAppId": "dtsd0ptxbhu0h"
+    },
+    "categories": {
+      "function": {
+        "jimcontest44ead4df44ead4dfPreSignup": {
+          "deploymentBucketName": "amplify-jimcontest-dev-10822-deployment",
+          "s3Key": "amplify-builds/jimcontest44ead4df44ead4dfPreSignup-47383569425962593279-build.zip"
+        }
+      },
+      "auth": {
+        "jimcontest44ead4df44ead4df": {}
+      }
     }
   }
 }

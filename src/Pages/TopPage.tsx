@@ -1,5 +1,5 @@
-import ContestCard from '../Components/ContestCard';
-import JumbotronItem from '../Layout/JumbotronItem';
+import ContestCard from '../components/ContestCard';
+import JumbotronItem from '../layouts/JumbotronItem';
 const TopPage = () => {
   return (
     <div>

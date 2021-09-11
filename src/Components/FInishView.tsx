@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../Stores/Store';
+import { RootState } from '../stores/Store';
 import { finishViewStyle } from '../styles/ContestStyle';
-import { calcAverage, timeFormat } from '../util/utility';
+import { calcAverage, timeFormat } from '../utils/utility';
 
 const FinishView = () => {
   const [average, setAverage] = useState('');
@@ -26,7 +26,7 @@ const FinishView = () => {
         }}
       >
         <div className="col-12 text-center">
-          {`Ao5: ${average}`}
+          {`ao5: ${average}`}
           <br />
           <button className="btn btn-primary btn-lg">結果送信</button>
         </div>

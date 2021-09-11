@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ContestResultActions } from '../Stores/ContestResultReducer';
-import { RootState } from '../Stores/Store';
+import { ContestResultActions } from '../stores/ContestResultReducer';
+import { RootState } from '../stores/Store';
 import {
   activeDNFButtonClass,
   activePlus2ButtonClass,
@@ -44,10 +44,7 @@ const PreResultCard = (props: PreResultCardProps) => {
     }
   }
   return (
-    <div
-      className="card text-center mx-2 px-0 col"
-      style={currentNumber < no ? inactiveCardStyle : {}}
-    >
+    <div className="card text-center mx-2 px-0 col">
       <div className="card-header h6">{`#${no}`}</div>
       <div className="card-body py-3">
         <div className="row py-2 ">

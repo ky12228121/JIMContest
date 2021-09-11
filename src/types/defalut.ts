@@ -9,3 +9,7 @@ export const contestResultDefault = {
 export const contestStatusDefault = {
   number: 1,
 };
+export const alertInfoDefault = {
+  type: 'danger',
+  message: '',
+};

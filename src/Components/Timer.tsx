@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContestResultActions } from '../Stores/ContestResultReducer';
-import { ContestStatusActions } from '../Stores/ContestStatusReducer';
-import { RootState } from '../Stores/Store';
+import { ContestResultActions } from '../stores/ContestResultReducer';
+import { ContestStatusActions } from '../stores/ContestStatusReducer';
+import { RootState } from '../stores/Store';
 import { timerStyle } from '../styles/ContestStyle';
 import { altFlagDefault } from '../types/defalut';
 import { AltFlag } from '../types/interfaces';
 import { TimerType } from '../types/types';
-import { timeFormatFromMs } from '../util/utility';
+import { timeFormatFromMs } from '../utils/utility';
 import FinishView from './FInishView';
 
 const Timer = () => {

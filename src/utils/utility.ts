@@ -1,5 +1,7 @@
-import { Result } from '../types/interfaces';
-import { MAX } from '../util/constant';
+import { useDispatch } from 'react-redux';
+import { AlertActions } from '../stores/AlertReducer';
+import { PreResult } from '../types/interfaces';
+import { MAX } from './constant';
 
 export function timeFormatFromMs(time: number): string {
   const timeFormat = time / 1000;
@@ -14,7 +16,7 @@ export function timeFormat(time: number): string {
   const timeFormat = time * 1000;
   return timeFormatFromMs(timeFormat);
 }
-export function calcAverage(timeList: Result[]) {
+export function calcAverage(timeList: PreResult[]) {
   const dnfFlag = timeList.filter((time) => time.penalty === 'dnf').length >= 2;
   if (dnfFlag) {
     return 'DNF';
