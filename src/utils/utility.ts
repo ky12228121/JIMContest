@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { AlertActions } from '../stores/AlertReducer';
 import { PreResult } from '../types/interfaces';
 import { MAX } from './constant';
 

@@ -3,19 +3,20 @@ import { MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { userActions } from '../stores/UserReducer';
-import { useChangeEvent } from '../utils/hooks';
+import { useChangeEvent, useAlertOpen } from '../utils/hooks';
 
 const Authentication = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const alertOpen = useAlertOpen();
   const { setUsername } = userActions;
   const loginUsername = useChangeEvent('');
   const loginPassword = useChangeEvent('');
   const registerEmail = useChangeEvent('');
   const registerUsername = useChangeEvent('');
   const registerPassword = useChangeEvent('');
-  const forgetUsername = useChangeEvent('');
-  function login(e: MouseEvent<HTMLButtonElement>) {
+
+  function signIn(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     Auth.signIn({
       username: loginUsername.value,
@@ -27,28 +28,30 @@ const Authentication = () => {
         history.push('/');
       })
       .catch((error) => {
-        console.log(`ログイン失敗\n${error}`);
-        history.push('/');
+        console.log(error);
+        alertOpen('danger', 'サインインに失敗しました');
+        loginPassword.setBySelf();
       });
   }
   function signUp(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
     if (registerPassword.value.length < 8) {
-      alert('パスワードは8文字以上入力してください。');
+      alertOpen('danger', 'パスワードは8文字以上入力してください');
       registerUsername.setBySelf('');
       registerPassword.setBySelf('');
       return;
     } else if (!registerPassword.value.match(/[0-9]/g)) {
-      alert('パスワードは数字を含める必要があります。');
+      alertOpen('danger', 'パスワードは数字を含める必要があります');
       registerUsername.setBySelf('');
       registerPassword.setBySelf('');
       return;
     } else if (!registerPassword.value.match(/[A-Z]/g)) {
-      alert('パスワードは英大文字を含める必要があります。');
+      alertOpen('danger', 'パスワードは英大文字を含める必要があります');
       registerUsername.setBySelf('');
       registerPassword.setBySelf('');
       return;
     } else if (!registerPassword.value.match(/[a-z]/g)) {
-      alert('パスワードは英小文字を含める必要があります。');
+      alertOpen('danger', 'パスワードは英小文字を含める必要があります');
       registerUsername.setBySelf('');
       registerPassword.setBySelf('');
       return;
@@ -57,32 +60,25 @@ const Authentication = () => {
       username: registerUsername.value,
       password: registerPassword.value,
       attributes: {
-        email: registerEmail,
+        email: registerEmail.value,
       },
     })
       .then(() => {
-        alert('登録完了');
-        window.location.reload();
+        alertOpen('success', '登録しました');
+        history.push('/');
       })
       .catch((error) => {
+        console.log(error);
         switch (error.code) {
           case 'UsernameExistsException':
-            alert(
-              `そのUsernameは既に使われています。\n \nerror_code : ${error.code}\nerror_message : ${error.message}`
-            );
+            alertOpen('danger', 'そのUsernameは既に使われています');
             registerUsername.setBySelf('');
             registerPassword.setBySelf('');
             break;
           default:
             break;
         }
-        console.log('サインアップ失敗', error);
       });
-  }
-  function forgetPassword() {
-    Auth.forgotPassword()
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
   }
   return (
     <>
@@ -149,7 +145,11 @@ const Authentication = () => {
                     />
                   </div>
                   <div className="form-group row my-2">
-                    <a className="text-end" href="#" onClick={() => {}}>
+                    <a
+                      className="text-end"
+                      href="#"
+                      onClick={() => history.push('/forgot-password')}
+                    >
                       <small>パスワードを忘れた方はこちら</small>
                     </a>
                   </div>
@@ -157,7 +157,7 @@ const Authentication = () => {
                     <div className="offset-4 col-4">
                       <button
                         className="btn btn-primary mt-3 form-control"
-                        onClick={login}
+                        onClick={signIn}
                       >
                         サインイン
                       </button>

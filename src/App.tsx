@@ -8,18 +8,25 @@ import { userActions } from './stores/UserReducer';
 import AllResult from './pages/AllResult';
 import PersonalResult from './pages/PersonalResult';
 import Ranking from './pages/Ranking';
+import ForgotPassword from './pages/ForgotPassword';
+import { useState } from 'react';
+import Alert from './layouts/Alert';
+import { RootState } from './stores/Store';
+
 const App = () => {
   const dispatch = useDispatch();
   const { setUsername } = userActions;
-  const username = useSelector((state: any) => state.user.username);
+  const username = useSelector((state: RootState) => state.user.username);
   const localUsername = localStorage.username;
   if (username === '' && localUsername !== '') {
     dispatch(setUsername(localUsername));
   }
+
   return (
     <div>
       <BrowserRouter>
-        {localUsername ? <NavBarItem /> : <div></div>}
+        {localUsername ? <NavBarItem /> : <div />}
+        <Alert />
         <Switch>
           <Route exact path="/">
             {localUsername ? <div /> : <Redirect to="/login" />}
@@ -27,6 +34,9 @@ const App = () => {
           </Route>
           <Route path="/login">
             {!localUsername ? <Authentication /> : <Redirect to="/" />}
+          </Route>
+          <Route path="/forgot-password">
+            <ForgotPassword />
           </Route>
           <Route path="/contest/:type">
             <Contest />
