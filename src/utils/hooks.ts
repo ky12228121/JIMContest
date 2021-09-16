@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AlertActions } from '../stores/AlertReducer';
+import { SpinnerActions } from '../stores/SpinnerReducer';
+import { RootState } from '../stores/Store';
 export function useChangeEvent(initial: string) {
   const [value, setValue] = useState(initial);
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
@@ -24,4 +26,16 @@ export function useAlertOpen() {
     }, 3000);
   }
   return open;
+}
+
+export function useToggleSpinner() {
+  const dispatch = useDispatch();
+  const { setSpinnerFlag } = SpinnerActions;
+  function viewSpinner() {
+    dispatch(setSpinnerFlag(true));
+  }
+  function noViewSpinner() {
+    dispatch(setSpinnerFlag(false));
+  }
+  return { viewSpinner, noViewSpinner };
 }

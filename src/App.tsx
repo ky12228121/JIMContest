@@ -12,6 +12,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import { useState } from 'react';
 import Alert from './layouts/Alert';
 import { RootState } from './stores/Store';
+import Spinner from './layouts/Spinner';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,32 +26,36 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        {localUsername ? <NavBarItem /> : <div />}
-        <Alert />
-        <Switch>
-          <Route exact path="/">
-            {localUsername ? <div /> : <Redirect to="/login" />}
-            <TopPage />
-          </Route>
-          <Route path="/login">
-            {!localUsername ? <Authentication /> : <Redirect to="/" />}
-          </Route>
-          <Route path="/forgot-password">
-            <ForgotPassword />
-          </Route>
-          <Route path="/contest/:type">
-            <Contest />
-          </Route>
-          <Route path="/result/all">
-            <AllResult />
-          </Route>
-          <Route path="/result/personal">
-            <PersonalResult />
-          </Route>
-          <Route path="/result/ranking">
-            <Ranking />
-          </Route>
-        </Switch>
+        <Spinner>
+          <div>
+            {localUsername ? <NavBarItem /> : <div />}
+            <Alert />
+            <Switch>
+              <Route exact path="/">
+                {localUsername ? <div /> : <Redirect to="/login" />}
+                <TopPage />
+              </Route>
+              <Route path="/login">
+                {!localUsername ? <Authentication /> : <Redirect to="/" />}
+              </Route>
+              <Route path="/forgot-password">
+                <ForgotPassword />
+              </Route>
+              <Route path="/contest/:type">
+                <Contest />
+              </Route>
+              <Route path="/result/all">
+                <AllResult />
+              </Route>
+              <Route path="/result/personal">
+                <PersonalResult />
+              </Route>
+              <Route path="/result/ranking">
+                <Ranking />
+              </Route>
+            </Switch>
+          </div>
+        </Spinner>
       </BrowserRouter>
     </div>
   );

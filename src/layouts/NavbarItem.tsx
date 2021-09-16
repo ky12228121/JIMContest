@@ -1,21 +1,25 @@
 import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
+import { useToggleSpinner } from '../utils/hooks';
 const NavBarItem = () => {
   const history = useHistory();
+  const { viewSpinner, noViewSpinner } = useToggleSpinner();
   const onClickMove = (url: string) => {
     history.push(url);
   };
   const onClickLogout = (e: any) => {
     e.preventDefault();
+    viewSpinner();
     Auth.signOut()
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        noViewSpinner();
         localStorage.removeItem('username');
         history.push('/');
         window.location.reload();
       })
       .catch((error) => {
         console.log(`ログアウト失敗\n${error}`);
+        noViewSpinner();
         history.push('/');
         window.location.reload();
       });

@@ -38,3 +38,6 @@ export interface RankingTableProps {
 export interface PastRecordTableProps {
   type: string;
 }
+export interface SpinnerProps {
+  children: JSX.Element;
+}

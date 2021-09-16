@@ -3,12 +3,13 @@ import { MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { userActions } from '../stores/UserReducer';
-import { useChangeEvent, useAlertOpen } from '../utils/hooks';
+import { useChangeEvent, useAlertOpen, useToggleSpinner } from '../utils/hooks';
 
 const Authentication = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const alertOpen = useAlertOpen();
+  const { viewSpinner, noViewSpinner } = useToggleSpinner();
   const { setUsername } = userActions;
   const loginUsername = useChangeEvent('');
   const loginPassword = useChangeEvent('');
@@ -18,6 +19,7 @@ const Authentication = () => {
 
   function signIn(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    viewSpinner();
     Auth.signIn({
       username: loginUsername.value,
       password: loginPassword.value,
@@ -25,9 +27,12 @@ const Authentication = () => {
       .then((data) => {
         localStorage.username = loginUsername.value;
         dispatch(setUsername(data.username));
+        console.log('in');
+        noViewSpinner();
         history.push('/');
       })
       .catch((error) => {
+        noViewSpinner();
         console.log(error);
         alertOpen('danger', 'サインインに失敗しました');
         loginPassword.setBySelf();
@@ -56,6 +61,7 @@ const Authentication = () => {
       registerPassword.setBySelf('');
       return;
     }
+    viewSpinner();
     Auth.signUp({
       username: registerUsername.value,
       password: registerPassword.value,
@@ -64,11 +70,13 @@ const Authentication = () => {
       },
     })
       .then(() => {
+        noViewSpinner();
         alertOpen('success', '登録しました');
         history.push('/');
       })
       .catch((error) => {
         console.log(error);
+        noViewSpinner();
         switch (error.code) {
           case 'UsernameExistsException':
             alertOpen('danger', 'そのUsernameは既に使われています');
