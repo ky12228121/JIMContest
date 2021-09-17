@@ -11,6 +11,12 @@
     "userpoolArn": {
       "Type": "String"
     },
+    "functionjimcontest44ead4df44ead4dfPostConfirmationName": {
+      "Type": "String"
+    },
+    "functionjimcontest44ead4df44ead4dfPostConfirmationArn": {
+      "Type": "String"
+    },
     "functionjimcontest44ead4df44ead4dfPreSignupName": {
       "Type": "String"
     },
@@ -29,6 +35,19 @@
     }
   },
   "Resources": {
+    "UserPoolPostConfirmationLambdaInvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Ref": "functionjimcontest44ead4df44ead4dfPostConfirmationName"
+        },
+        "Principal": "cognito-idp.amazonaws.com",
+        "SourceArn": {
+          "Ref": "userpoolArn"
+        }
+      }
+    },
     "UserPoolPreSignUpLambdaInvokePermission": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -130,6 +149,13 @@
           "Ref": "userpoolId"
         },
         "lambdaConfig": [
+          {
+            "triggerType": "PostConfirmation",
+            "lambdaFunctionName": "jimcontest44ead4df44ead4dfPostConfirmation",
+            "lambdaFunctionArn": {
+              "Ref": "functionjimcontest44ead4df44ead4dfPostConfirmationArn"
+            }
+          },
           {
             "triggerType": "PreSignUp",
             "lambdaFunctionName": "jimcontest44ead4df44ead4dfPreSignup",

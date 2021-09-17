@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "jimcontest44ead4df44ead4df",
+  "functionName": "jimcontest44ead4df44ead4dfPostConfirmation",
+  "resourceName": "jimcontest44ead4df44ead4dfPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\Users\\ky122\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "jimcontest44ead4df44ead4dfPostConfirmation",
+  "skipEdit": true,
+  "enableCors": false
+}

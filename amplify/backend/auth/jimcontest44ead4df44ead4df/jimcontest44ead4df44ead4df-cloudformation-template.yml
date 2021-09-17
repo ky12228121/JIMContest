@@ -22,6 +22,16 @@ Parameters:
   
   
   
+  functionjimcontest44ead4df44ead4dfPostConfirmationArn:
+    Type: String
+    Default: functionjimcontest44ead4df44ead4dfPostConfirmationArn
+  
+  functionjimcontest44ead4df44ead4dfPostConfirmationName:
+    Type: String
+    Default: functionjimcontest44ead4df44ead4dfPostConfirmationName
+  
+  
+  
 
     
   resourceNameTruncated:
@@ -142,7 +152,6 @@ Parameters:
   userPoolGroupList:
     Type: CommaDelimitedList
       
-            
   serviceName:
     Type: String
   
@@ -169,6 +178,11 @@ Parameters:
       
         
   dependsOn:
+    Type: CommaDelimitedList
+      
+            
+        
+  authProviders:
     Type: CommaDelimitedList
       
 Conditions:
