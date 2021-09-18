@@ -53,7 +53,7 @@
     "useDefault": "manual",
     "userPoolGroups": false,
     "adminQueries": false,
-    "triggers": "{\n  \"PostConfirmation\": [\n    \"custom\"\n  ],\n  \"PreSignup\": [\n    \"custom\"\n  ]\n}",
+    "triggers": "{\n  \"PreSignup\": [\n    \"custom\"\n  ]\n}",
     "hostedUI": false,
     "userPoolGroupList": [],
     "serviceName": "Cognito",
@@ -61,22 +61,13 @@
     "parentStack": {
         "Ref": "AWS::StackId"
     },
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"jimcontest44ead4df44ead4dfPostConfirmation\"\n  },\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"jimcontest44ead4df44ead4dfPreSignup\"\n  }\n]",
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"jimcontest44ead4df44ead4dfPreSignup\"\n  }\n]",
     "breakCircularDependency": true,
     "permissions": [],
     "dependsOn": [
         {
             "category": "function",
             "resourceName": "jimcontest44ead4df44ead4dfPreSignup",
-            "triggerProvider": "Cognito",
-            "attributes": [
-                "Arn",
-                "Name"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "jimcontest44ead4df44ead4dfPostConfirmation",
             "triggerProvider": "Cognito",
             "attributes": [
                 "Arn",

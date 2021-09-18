@@ -36,7 +36,8 @@ type PreResults @model
   no5: ResultSchema
 }
 
-type Users @model {
+type Users @model 
+  @key(name: "getByUsername", fields: ["username"], queryField: "getByUsername") {
   id: String!
   username: String!
   pre_results: [PreResults] @connection(keyName: "getByUser", fields: ["id"])

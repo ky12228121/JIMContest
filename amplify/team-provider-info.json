@@ -16,10 +16,6 @@
         "jimcontest44ead4df44ead4dfPreSignup": {
           "deploymentBucketName": "amplify-jimcontest-dev-10822-deployment",
           "s3Key": "amplify-builds/jimcontest44ead4df44ead4dfPreSignup-47383569425962593279-build.zip"
-        },
-        "jimcontest44ead4df44ead4dfPostConfirmation": {
-          "deploymentBucketName": "amplify-jimcontest-dev-10822-deployment",
-          "s3Key": "amplify-builds/jimcontest44ead4df44ead4dfPostConfirmation-2b4d6331677438506341-build.zip"
         }
       },
       "auth": {

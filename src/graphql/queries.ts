@@ -7,15 +7,6 @@ export const getContests = /* GraphQL */ `
     getContests(contest_type: $contest_type, id: $id) {
       id
       events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       contest_number
@@ -47,9 +38,6 @@ export const listContests = /* GraphQL */ `
     ) {
       items {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -69,9 +57,6 @@ export const getEvents = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -115,25 +100,8 @@ export const listEvents = /* GraphQL */ `
       items {
         id
         contest_id
-        contest {
-          id
-          contest_number
-          contest_type
-          current_flag
-          start_date
-          end_date
-          createdAt
-          updatedAt
-        }
         event_type
         scramble_id
-        scramble {
-          id
-          evnet_id
-          scramble
-          createdAt
-          updatedAt
-        }
         entry_count
         createdAt
         updatedAt
@@ -195,26 +163,6 @@ export const listPreResults = /* GraphQL */ `
         id
         user_id
         event_type
-        no1 {
-          result
-          penalty
-        }
-        no2 {
-          result
-          penalty
-        }
-        no3 {
-          result
-          penalty
-        }
-        no4 {
-          result
-          penalty
-        }
-        no5 {
-          result
-          penalty
-        }
         createdAt
         updatedAt
         owner
@@ -229,27 +177,9 @@ export const getUsers = /* GraphQL */ `
       id
       username
       pre_results {
-        items {
-          id
-          user_id
-          event_type
-          createdAt
-          updatedAt
-          owner
-        }
         nextToken
       }
       results {
-        items {
-          id
-          contest_id
-          contest_type
-          best
-          average
-          user_id
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -267,12 +197,6 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         username
-        pre_results {
-          nextToken
-        }
-        results {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -328,9 +252,6 @@ export const getResults = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -366,12 +287,6 @@ export const getResults = /* GraphQL */ `
       user {
         id
         username
-        pre_results {
-          nextToken
-        }
-        results {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -400,46 +315,10 @@ export const listResults = /* GraphQL */ `
       items {
         id
         contest_id
-        contest {
-          id
-          contest_number
-          contest_type
-          current_flag
-          start_date
-          end_date
-          createdAt
-          updatedAt
-        }
         contest_type
-        no1 {
-          result
-          penalty
-        }
-        no2 {
-          result
-          penalty
-        }
-        no3 {
-          result
-          penalty
-        }
-        no4 {
-          result
-          penalty
-        }
-        no5 {
-          result
-          penalty
-        }
         best
         average
         user_id
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
       }
@@ -464,14 +343,36 @@ export const getByCurrentFlag = /* GraphQL */ `
     ) {
       items {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
         start_date
         end_date
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getByUsername = /* GraphQL */ `
+  query GetByUsername(
+    $username: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelUsersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getByUsername(
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        username
         createdAt
         updatedAt
       }
@@ -497,46 +398,10 @@ export const getByUser = /* GraphQL */ `
       items {
         id
         contest_id
-        contest {
-          id
-          contest_number
-          contest_type
-          current_flag
-          start_date
-          end_date
-          createdAt
-          updatedAt
-        }
         contest_type
-        no1 {
-          result
-          penalty
-        }
-        no2 {
-          result
-          penalty
-        }
-        no3 {
-          result
-          penalty
-        }
-        no4 {
-          result
-          penalty
-        }
-        no5 {
-          result
-          penalty
-        }
         best
         average
         user_id
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
       }

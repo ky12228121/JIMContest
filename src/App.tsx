@@ -1,19 +1,20 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-import Authentication from './pages/Login';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Alert from './layouts/Alert';
 import NavBarItem from './layouts/NavbarItem';
-import TopPage from './pages/TopPage';
-import Contest from './pages/Contest';
-import { userActions } from './stores/UserReducer';
+import Spinner from './layouts/Spinner';
 import AllResult from './pages/AllResult';
+import Contest from './pages/Contest';
+import ForgotPassword from './pages/ForgotPassword';
+import Authentication from './pages/Login';
 import PersonalResult from './pages/PersonalResult';
 import Ranking from './pages/Ranking';
-import ForgotPassword from './pages/ForgotPassword';
-import { useState } from 'react';
-import Alert from './layouts/Alert';
+import TopPage from './pages/TopPage';
 import { RootState } from './stores/Store';
-import Spinner from './layouts/Spinner';
-
+import { userActions } from './stores/UserReducer';
+import { API } from 'aws-amplify';
+import { getUsers } from '../graphql/queries';
 const App = () => {
   const dispatch = useDispatch();
   const { setUsername } = userActions;
@@ -22,6 +23,13 @@ const App = () => {
   if (username === '' && localUsername !== '') {
     dispatch(setUsername(localUsername));
   }
+  async function getUser() {
+    const user = await API.graphql({
+      query: getUsers,
+      variables: { id: '' },
+    });
+  }
+  useEffect(() => {}, []);
 
   return (
     <div>

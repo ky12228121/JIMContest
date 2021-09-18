@@ -22,16 +22,6 @@ Parameters:
   
   
   
-  functionjimcontest44ead4df44ead4dfPostConfirmationArn:
-    Type: String
-    Default: functionjimcontest44ead4df44ead4dfPostConfirmationArn
-  
-  functionjimcontest44ead4df44ead4dfPostConfirmationName:
-    Type: String
-    Default: functionjimcontest44ead4df44ead4dfPostConfirmationName
-  
-  
-  
 
     
   resourceNameTruncated:

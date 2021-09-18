@@ -10,15 +10,6 @@ export const createContests = /* GraphQL */ `
     createContests(input: $input, condition: $condition) {
       id
       events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       contest_number
@@ -39,15 +30,6 @@ export const updateContests = /* GraphQL */ `
     updateContests(input: $input, condition: $condition) {
       id
       events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       contest_number
@@ -68,15 +50,6 @@ export const deleteContests = /* GraphQL */ `
     deleteContests(input: $input, condition: $condition) {
       id
       events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       contest_number
@@ -99,9 +72,6 @@ export const createEvents = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -135,9 +105,6 @@ export const updateEvents = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -171,9 +138,6 @@ export const deleteEvents = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -311,27 +275,9 @@ export const createUsers = /* GraphQL */ `
       id
       username
       pre_results {
-        items {
-          id
-          user_id
-          event_type
-          createdAt
-          updatedAt
-          owner
-        }
         nextToken
       }
       results {
-        items {
-          id
-          contest_id
-          contest_type
-          best
-          average
-          user_id
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -348,27 +294,9 @@ export const updateUsers = /* GraphQL */ `
       id
       username
       pre_results {
-        items {
-          id
-          user_id
-          event_type
-          createdAt
-          updatedAt
-          owner
-        }
         nextToken
       }
       results {
-        items {
-          id
-          contest_id
-          contest_type
-          best
-          average
-          user_id
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -385,27 +313,9 @@ export const deleteUsers = /* GraphQL */ `
       id
       username
       pre_results {
-        items {
-          id
-          user_id
-          event_type
-          createdAt
-          updatedAt
-          owner
-        }
         nextToken
       }
       results {
-        items {
-          id
-          contest_id
-          contest_type
-          best
-          average
-          user_id
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -465,9 +375,6 @@ export const createResults = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -503,12 +410,6 @@ export const createResults = /* GraphQL */ `
       user {
         id
         username
-        pre_results {
-          nextToken
-        }
-        results {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -527,9 +428,6 @@ export const updateResults = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -565,12 +463,6 @@ export const updateResults = /* GraphQL */ `
       user {
         id
         username
-        pre_results {
-          nextToken
-        }
-        results {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -589,9 +481,6 @@ export const deleteResults = /* GraphQL */ `
       contest_id
       contest {
         id
-        events {
-          nextToken
-        }
         contest_number
         contest_type
         current_flag
@@ -627,12 +516,6 @@ export const deleteResults = /* GraphQL */ `
       user {
         id
         username
-        pre_results {
-          nextToken
-        }
-        results {
-          nextToken
-        }
         createdAt
         updatedAt
       }
