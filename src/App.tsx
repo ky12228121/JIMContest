@@ -12,9 +12,13 @@ import PersonalResult from './pages/PersonalResult';
 import Ranking from './pages/Ranking';
 import TopPage from './pages/TopPage';
 import { RootState } from './stores/Store';
-import { userActions } from './stores/UserReducer';
+import UserReducer, { userActions } from './stores/UserReducer';
 import { API } from 'aws-amplify';
-import { getUsers } from '../graphql/queries';
+import { getByUsername } from './graphql/queries';
+import { createUsers } from './graphql/mutations';
+import { GraphQLResult } from '@aws-amplify/api-graphql';
+import { GetByUsernameQuery } from './API';
+
 const App = () => {
   const dispatch = useDispatch();
   const { setUsername } = userActions;
@@ -24,12 +28,27 @@ const App = () => {
     dispatch(setUsername(localUsername));
   }
   async function getUser() {
-    const user = await API.graphql({
-      query: getUsers,
-      variables: { id: '' },
-    });
+    try {
+      const user = (await API.graphql({
+        query: getByUsername,
+        variables: { username: localUsername },
+      })) as GraphQLResult<GetByUsernameQuery>;
+      if (typeof user === 'undefined') {
+        return;
+      }
+      if (!user.data?.getByUsername?.items?.length) {
+        await API.graphql({
+          query: createUsers,
+          variables: { username: localUsername },
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div>

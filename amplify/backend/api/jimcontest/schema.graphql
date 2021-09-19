@@ -1,7 +1,7 @@
 type Contests @model 
   @key(fields: ["contest_type", "id"]) 
   @key(name: "getByCurrentFlag", fields:["current_flag"], queryField: "getByCurrentFlag") {
-  id: String!
+  id: ID!
   events: [Events] @connection(keyName: "byContest", fields: ["id"])
   contest_number: String!
   contest_type: String!
@@ -13,11 +13,11 @@ type Contests @model
 type Events @model 
   @key(fields: ["event_type", "contest_id"])
   @key(name: "byContest", fields: ["contest_id", "event_type", "scramble_id", "entry_count"]) {
-  id: String!
-  contest_id: String!
-  contest: Contests @connection(fields: ["contest_id"])
+  id: ID!
+  contest_id: ID!
+  contest: Contests #@connection(fields: ["contest_id"])
   event_type: String!
-  scramble_id: String!
+  scramble_id: ID!
   scramble: Scrambles @connection(fields: ["scramble_id"])
   entry_count: Int!
 }
@@ -26,8 +26,8 @@ type PreResults @model
   @auth(rules: [{ allow: owner }]) 
   @key(fields: ["event_type", "user_id"])
   @key(name: "getByUser" fields: ["user_id"]) {
-  id: String!
-  user_id: String!
+  id: ID!
+  user_id: ID!
   event_type: String!
   no1: ResultSchema!
   no2: ResultSchema
@@ -38,24 +38,24 @@ type PreResults @model
 
 type Users @model 
   @key(name: "getByUsername", fields: ["username"], queryField: "getByUsername") {
-  id: String!
+  id: ID!
   username: String!
   pre_results: [PreResults] @connection(keyName: "getByUser", fields: ["id"])
   results: [Results] @connection(keyName: "getByUser", fields: ["id"])
 }
 
 type Scrambles @model {
-  id: String!
-  evnet_id: String!
+  id: ID!
+  evnet_id: ID!
   scramble: String!
 }
 
 type Results @model 
   @key(fields: ["contest_type", "contest_id", "best", "average", "user_id"]) 
   @key(name: "getByUser", fields: ["user_id"], queryField: "getByUser") {
-  id: String!
-  contest_id: String!
-  contest: Contests @connection(fields: ["contest_id"])
+  id: ID!
+  contest_id: ID!
+  contest: Contests #@connection(fields: ["contest_id"])
   contest_type: String!
   no1: ResultSchema!
   no2: ResultSchema!
@@ -64,7 +64,7 @@ type Results @model
   no5: ResultSchema!
   best: String!
   average: String!
-  user_id: String!
+  user_id: ID!
   user: Users @connection(fields: ["user_id"])
 }
 

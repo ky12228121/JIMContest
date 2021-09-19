@@ -6,6 +6,7 @@ update-schema:
 
 make codegen:
 	amplify codegen
+
 pub:
 	aplify publish
 
