@@ -1,5 +1,4 @@
-type Contests @model 
-  @key(fields: ["contest_type", "id"]) 
+type Contests @model
   @key(name: "getByCurrentFlag", fields:["current_flag"], queryField: "getByCurrentFlag") {
   id: ID!
   events: [Events] @connection(keyName: "byContest", fields: ["id"])
@@ -15,7 +14,7 @@ type Events @model
   @key(name: "byContest", fields: ["contest_id", "event_type", "scramble_id", "entry_count"]) {
   id: ID!
   contest_id: ID!
-  contest: Contests #@connection(fields: ["contest_id"])
+  contest: Contests @connection(fields: ["contest_id"])
   event_type: String!
   scramble_id: ID!
   scramble: Scrambles @connection(fields: ["scramble_id"])
@@ -55,7 +54,7 @@ type Results @model
   @key(name: "getByUser", fields: ["user_id"], queryField: "getByUser") {
   id: ID!
   contest_id: ID!
-  contest: Contests #@connection(fields: ["contest_id"])
+  contest: Contests @connection(fields: ["contest_id"])
   contest_type: String!
   no1: ResultSchema!
   no2: ResultSchema!

@@ -7,10 +7,9 @@ import { useChangeEvent, useAlertOpen, useToggleSpinner } from '../utils/hooks';
 
 const Authentication = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const alertOpen = useAlertOpen();
   const { viewSpinner, noViewSpinner } = useToggleSpinner();
-  const { setUsername } = userActions;
+  noViewSpinner();
   const loginUsername = useChangeEvent('');
   const loginPassword = useChangeEvent('');
   const registerEmail = useChangeEvent('');
@@ -26,10 +25,7 @@ const Authentication = () => {
     })
       .then((data) => {
         localStorage.username = loginUsername.value;
-        dispatch(setUsername(data.username));
-        console.log('in');
-        noViewSpinner();
-        history.push('/');
+        window.location.reload();
       })
       .catch((error) => {
         noViewSpinner();

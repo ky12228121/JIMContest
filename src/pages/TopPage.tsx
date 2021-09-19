@@ -1,6 +1,9 @@
 import ContestCard from '../components/ContestCard';
 import JumbotronItem from '../layouts/JumbotronItem';
+import { useToggleSpinner } from '../utils/hooks';
 const TopPage = () => {
+  const { noViewSpinner } = useToggleSpinner();
+  noViewSpinner();
   return (
     <div>
       <JumbotronItem />

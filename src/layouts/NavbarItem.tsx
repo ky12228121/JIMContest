@@ -12,15 +12,11 @@ const NavBarItem = () => {
     viewSpinner();
     Auth.signOut()
       .then(() => {
-        noViewSpinner();
         localStorage.removeItem('username');
-        history.push('/');
         window.location.reload();
       })
       .catch((error) => {
         console.log(`ログアウト失敗\n${error}`);
-        noViewSpinner();
-        history.push('/');
         window.location.reload();
       });
   };

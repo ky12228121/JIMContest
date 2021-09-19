@@ -3,10 +3,19 @@
 // this is an auto generated file. This will be overwritten
 
 export const getContests = /* GraphQL */ `
-  query GetContests($contest_type: String!, $id: String!) {
-    getContests(contest_type: $contest_type, id: $id) {
+  query GetContests($id: ID!) {
+    getContests(id: $id) {
       id
       events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       contest_number
@@ -21,23 +30,16 @@ export const getContests = /* GraphQL */ `
 `;
 export const listContests = /* GraphQL */ `
   query ListContests(
-    $contest_type: String
-    $id: ModelStringKeyConditionInput
     $filter: ModelContestsFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listContests(
-      contest_type: $contest_type
-      id: $id
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listContests(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        events {
+          nextToken
+        }
         contest_number
         contest_type
         current_flag
@@ -51,12 +53,15 @@ export const listContests = /* GraphQL */ `
   }
 `;
 export const getEvents = /* GraphQL */ `
-  query GetEvents($event_type: String!, $contest_id: String!) {
+  query GetEvents($event_type: String!, $contest_id: ID!) {
     getEvents(event_type: $event_type, contest_id: $contest_id) {
       id
       contest_id
       contest {
         id
+        events {
+          nextToken
+        }
         contest_number
         contest_type
         current_flag
@@ -83,7 +88,7 @@ export const getEvents = /* GraphQL */ `
 export const listEvents = /* GraphQL */ `
   query ListEvents(
     $event_type: String
-    $contest_id: ModelStringKeyConditionInput
+    $contest_id: ModelIDKeyConditionInput
     $filter: ModelEventsFilterInput
     $limit: Int
     $nextToken: String
@@ -100,8 +105,25 @@ export const listEvents = /* GraphQL */ `
       items {
         id
         contest_id
+        contest {
+          id
+          contest_number
+          contest_type
+          current_flag
+          start_date
+          end_date
+          createdAt
+          updatedAt
+        }
         event_type
         scramble_id
+        scramble {
+          id
+          evnet_id
+          scramble
+          createdAt
+          updatedAt
+        }
         entry_count
         createdAt
         updatedAt
@@ -111,7 +133,7 @@ export const listEvents = /* GraphQL */ `
   }
 `;
 export const getPreResults = /* GraphQL */ `
-  query GetPreResults($event_type: String!, $user_id: String!) {
+  query GetPreResults($event_type: String!, $user_id: ID!) {
     getPreResults(event_type: $event_type, user_id: $user_id) {
       id
       user_id
@@ -145,7 +167,7 @@ export const getPreResults = /* GraphQL */ `
 export const listPreResults = /* GraphQL */ `
   query ListPreResults(
     $event_type: String
-    $user_id: ModelStringKeyConditionInput
+    $user_id: ModelIDKeyConditionInput
     $filter: ModelPreResultsFilterInput
     $limit: Int
     $nextToken: String
@@ -163,6 +185,26 @@ export const listPreResults = /* GraphQL */ `
         id
         user_id
         event_type
+        no1 {
+          result
+          penalty
+        }
+        no2 {
+          result
+          penalty
+        }
+        no3 {
+          result
+          penalty
+        }
+        no4 {
+          result
+          penalty
+        }
+        no5 {
+          result
+          penalty
+        }
         createdAt
         updatedAt
         owner
@@ -177,9 +219,27 @@ export const getUsers = /* GraphQL */ `
       id
       username
       pre_results {
+        items {
+          id
+          user_id
+          event_type
+          createdAt
+          updatedAt
+          owner
+        }
         nextToken
       }
       results {
+        items {
+          id
+          contest_id
+          contest_type
+          best
+          average
+          user_id
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -197,6 +257,12 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         username
+        pre_results {
+          nextToken
+        }
+        results {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -236,10 +302,10 @@ export const listScrambles = /* GraphQL */ `
 export const getResults = /* GraphQL */ `
   query GetResults(
     $contest_type: String!
-    $contest_id: String!
+    $contest_id: ID!
     $best: String!
     $average: String!
-    $user_id: String!
+    $user_id: ID!
   ) {
     getResults(
       contest_type: $contest_type
@@ -252,6 +318,9 @@ export const getResults = /* GraphQL */ `
       contest_id
       contest {
         id
+        events {
+          nextToken
+        }
         contest_number
         contest_type
         current_flag
@@ -287,6 +356,12 @@ export const getResults = /* GraphQL */ `
       user {
         id
         username
+        pre_results {
+          nextToken
+        }
+        results {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -315,10 +390,46 @@ export const listResults = /* GraphQL */ `
       items {
         id
         contest_id
+        contest {
+          id
+          contest_number
+          contest_type
+          current_flag
+          start_date
+          end_date
+          createdAt
+          updatedAt
+        }
         contest_type
+        no1 {
+          result
+          penalty
+        }
+        no2 {
+          result
+          penalty
+        }
+        no3 {
+          result
+          penalty
+        }
+        no4 {
+          result
+          penalty
+        }
+        no5 {
+          result
+          penalty
+        }
         best
         average
         user_id
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -343,6 +454,9 @@ export const getByCurrentFlag = /* GraphQL */ `
     ) {
       items {
         id
+        events {
+          nextToken
+        }
         contest_number
         contest_type
         current_flag
@@ -373,6 +487,12 @@ export const getByUsername = /* GraphQL */ `
       items {
         id
         username
+        pre_results {
+          nextToken
+        }
+        results {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -382,7 +502,7 @@ export const getByUsername = /* GraphQL */ `
 `;
 export const getByUser = /* GraphQL */ `
   query GetByUser(
-    $user_id: String
+    $user_id: ID
     $sortDirection: ModelSortDirection
     $filter: ModelResultsFilterInput
     $limit: Int
@@ -398,10 +518,46 @@ export const getByUser = /* GraphQL */ `
       items {
         id
         contest_id
+        contest {
+          id
+          contest_number
+          contest_type
+          current_flag
+          start_date
+          end_date
+          createdAt
+          updatedAt
+        }
         contest_type
+        no1 {
+          result
+          penalty
+        }
+        no2 {
+          result
+          penalty
+        }
+        no3 {
+          result
+          penalty
+        }
+        no4 {
+          result
+          penalty
+        }
+        no5 {
+          result
+          penalty
+        }
         best
         average
         user_id
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }

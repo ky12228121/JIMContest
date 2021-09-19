@@ -3,7 +3,7 @@
 //  This file was automatically generated and should not be edited.
 
 export type CreateContestsInput = {
-  id: string,
+  id?: string | null,
   contest_number: string,
   contest_type: string,
   current_flag: number,
@@ -13,6 +13,7 @@ export type CreateContestsInput = {
 
 export type ModelContestsConditionInput = {
   contest_number?: ModelStringInput | null,
+  contest_type?: ModelStringInput | null,
   current_flag?: ModelIntInput | null,
   start_date?: ModelStringInput | null,
   end_date?: ModelStringInput | null,
@@ -117,19 +118,18 @@ export type Scrambles = {
 export type UpdateContestsInput = {
   id: string,
   contest_number?: string | null,
-  contest_type: string,
+  contest_type?: string | null,
   current_flag?: number | null,
   start_date?: string | null,
   end_date?: string | null,
 };
 
 export type DeleteContestsInput = {
-  contest_type: string,
   id: string,
 };
 
 export type CreateEventsInput = {
-  id: string,
+  id?: string | null,
   contest_id: string,
   event_type: string,
   scramble_id: string,
@@ -137,11 +137,27 @@ export type CreateEventsInput = {
 };
 
 export type ModelEventsConditionInput = {
-  scramble_id?: ModelStringInput | null,
+  scramble_id?: ModelIDInput | null,
   entry_count?: ModelIntInput | null,
   and?: Array< ModelEventsConditionInput | null > | null,
   or?: Array< ModelEventsConditionInput | null > | null,
   not?: ModelEventsConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type UpdateEventsInput = {
@@ -158,7 +174,7 @@ export type DeleteEventsInput = {
 };
 
 export type CreatePreResultsInput = {
-  id: string,
+  id?: string | null,
   user_id: string,
   event_type: string,
   no1: ResultSchemaInput,
@@ -217,7 +233,7 @@ export type DeletePreResultsInput = {
 };
 
 export type CreateUsersInput = {
-  id: string,
+  id?: string | null,
   username: string,
 };
 
@@ -279,13 +295,13 @@ export type DeleteUsersInput = {
 };
 
 export type CreateScramblesInput = {
-  id: string,
+  id?: string | null,
   evnet_id: string,
   scramble: string,
 };
 
 export type ModelScramblesConditionInput = {
-  evnet_id?: ModelStringInput | null,
+  evnet_id?: ModelIDInput | null,
   scramble?: ModelStringInput | null,
   and?: Array< ModelScramblesConditionInput | null > | null,
   or?: Array< ModelScramblesConditionInput | null > | null,
@@ -303,7 +319,7 @@ export type DeleteScramblesInput = {
 };
 
 export type CreateResultsInput = {
-  id: string,
+  id?: string | null,
   contest_id: string,
   contest_type: string,
   no1: ResultSchemaInput,
@@ -344,18 +360,8 @@ export type DeleteResultsInput = {
   user_id: string,
 };
 
-export type ModelStringKeyConditionInput = {
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-};
-
 export type ModelContestsFilterInput = {
-  id?: ModelStringInput | null,
+  id?: ModelIDInput | null,
   contest_number?: ModelStringInput | null,
   contest_type?: ModelStringInput | null,
   current_flag?: ModelIntInput | null,
@@ -366,32 +372,42 @@ export type ModelContestsFilterInput = {
   not?: ModelContestsFilterInput | null,
 };
 
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-
 export type ModelContestsConnection = {
   __typename: "ModelContestsConnection",
   items?:  Array<Contests | null > | null,
   nextToken?: string | null,
 };
 
+export type ModelIDKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
 export type ModelEventsFilterInput = {
-  id?: ModelStringInput | null,
-  contest_id?: ModelStringInput | null,
+  id?: ModelIDInput | null,
+  contest_id?: ModelIDInput | null,
   event_type?: ModelStringInput | null,
-  scramble_id?: ModelStringInput | null,
+  scramble_id?: ModelIDInput | null,
   entry_count?: ModelIntInput | null,
   and?: Array< ModelEventsFilterInput | null > | null,
   or?: Array< ModelEventsFilterInput | null > | null,
   not?: ModelEventsFilterInput | null,
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type ModelPreResultsFilterInput = {
-  id?: ModelStringInput | null,
-  user_id?: ModelStringInput | null,
+  id?: ModelIDInput | null,
+  user_id?: ModelIDInput | null,
   event_type?: ModelStringInput | null,
   and?: Array< ModelPreResultsFilterInput | null > | null,
   or?: Array< ModelPreResultsFilterInput | null > | null,
@@ -399,7 +415,7 @@ export type ModelPreResultsFilterInput = {
 };
 
 export type ModelUsersFilterInput = {
-  id?: ModelStringInput | null,
+  id?: ModelIDInput | null,
   username?: ModelStringInput | null,
   and?: Array< ModelUsersFilterInput | null > | null,
   or?: Array< ModelUsersFilterInput | null > | null,
@@ -413,8 +429,8 @@ export type ModelUsersConnection = {
 };
 
 export type ModelScramblesFilterInput = {
-  id?: ModelStringInput | null,
-  evnet_id?: ModelStringInput | null,
+  id?: ModelIDInput | null,
+  evnet_id?: ModelIDInput | null,
   scramble?: ModelStringInput | null,
   and?: Array< ModelScramblesFilterInput | null > | null,
   or?: Array< ModelScramblesFilterInput | null > | null,
@@ -445,12 +461,12 @@ export type ModelResultsPrimaryCompositeKeyInput = {
 };
 
 export type ModelResultsFilterInput = {
-  id?: ModelStringInput | null,
-  contest_id?: ModelStringInput | null,
+  id?: ModelIDInput | null,
+  contest_id?: ModelIDInput | null,
   contest_type?: ModelStringInput | null,
   best?: ModelStringInput | null,
   average?: ModelStringInput | null,
-  user_id?: ModelStringInput | null,
+  user_id?: ModelIDInput | null,
   and?: Array< ModelResultsFilterInput | null > | null,
   or?: Array< ModelResultsFilterInput | null > | null,
   not?: ModelResultsFilterInput | null,
@@ -467,6 +483,16 @@ export type CreateContestsMutation = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -490,6 +516,16 @@ export type UpdateContestsMutation = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -513,6 +549,16 @@ export type DeleteContestsMutation = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -538,6 +584,10 @@ export type CreateEventsMutation = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -575,6 +625,10 @@ export type UpdateEventsMutation = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -612,6 +666,10 @@ export type DeleteEventsMutation = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -774,10 +832,30 @@ export type CreateUsersMutation = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -797,10 +875,30 @@ export type UpdateUsersMutation = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -820,10 +918,30 @@ export type DeleteUsersMutation = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -892,6 +1010,10 @@ export type CreateResultsMutation = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -933,6 +1055,14 @@ export type CreateResultsMutation = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -954,6 +1084,10 @@ export type UpdateResultsMutation = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -995,6 +1129,14 @@ export type UpdateResultsMutation = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1016,6 +1158,10 @@ export type DeleteResultsMutation = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1057,6 +1203,14 @@ export type DeleteResultsMutation = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1066,7 +1220,6 @@ export type DeleteResultsMutation = {
 };
 
 export type GetContestsQueryVariables = {
-  contest_type: string,
   id: string,
 };
 
@@ -1076,6 +1229,16 @@ export type GetContestsQuery = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -1089,12 +1252,9 @@ export type GetContestsQuery = {
 };
 
 export type ListContestsQueryVariables = {
-  contest_type?: string | null,
-  id?: ModelStringKeyConditionInput | null,
   filter?: ModelContestsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListContestsQuery = {
@@ -1103,6 +1263,10 @@ export type ListContestsQuery = {
     items?:  Array< {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1128,6 +1292,10 @@ export type GetEventsQuery = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1154,7 +1322,7 @@ export type GetEventsQuery = {
 
 export type ListEventsQueryVariables = {
   event_type?: string | null,
-  contest_id?: ModelStringKeyConditionInput | null,
+  contest_id?: ModelIDKeyConditionInput | null,
   filter?: ModelEventsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
@@ -1168,8 +1336,27 @@ export type ListEventsQuery = {
       __typename: "Events",
       id: string,
       contest_id: string,
+      contest?:  {
+        __typename: "Contests",
+        id: string,
+        contest_number: string,
+        contest_type: string,
+        current_flag: number,
+        start_date: string,
+        end_date: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
       event_type: string,
       scramble_id: string,
+      scramble?:  {
+        __typename: "Scrambles",
+        id: string,
+        evnet_id: string,
+        scramble: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
       entry_count: number,
       createdAt: string,
       updatedAt: string,
@@ -1222,7 +1409,7 @@ export type GetPreResultsQuery = {
 
 export type ListPreResultsQueryVariables = {
   event_type?: string | null,
-  user_id?: ModelStringKeyConditionInput | null,
+  user_id?: ModelIDKeyConditionInput | null,
   filter?: ModelPreResultsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
@@ -1237,6 +1424,31 @@ export type ListPreResultsQuery = {
       id: string,
       user_id: string,
       event_type: string,
+      no1:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no2?:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      } | null,
+      no3?:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      } | null,
+      no4?:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      } | null,
+      no5?:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      } | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -1256,10 +1468,30 @@ export type GetUsersQuery = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1280,6 +1512,14 @@ export type ListUsersQuery = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1339,6 +1579,10 @@ export type GetResultsQuery = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1380,6 +1624,14 @@ export type GetResultsQuery = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1404,10 +1656,53 @@ export type ListResultsQuery = {
       __typename: "Results",
       id: string,
       contest_id: string,
+      contest?:  {
+        __typename: "Contests",
+        id: string,
+        contest_number: string,
+        contest_type: string,
+        current_flag: number,
+        start_date: string,
+        end_date: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
       contest_type: string,
+      no1:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no2:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no3:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no4:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no5:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
       best: string,
       average: string,
       user_id: string,
+      user?:  {
+        __typename: "Users",
+        id: string,
+        username: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1429,6 +1724,10 @@ export type GetByCurrentFlagQuery = {
     items?:  Array< {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1456,6 +1755,14 @@ export type GetByUsernameQuery = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1478,10 +1785,53 @@ export type GetByUserQuery = {
       __typename: "Results",
       id: string,
       contest_id: string,
+      contest?:  {
+        __typename: "Contests",
+        id: string,
+        contest_number: string,
+        contest_type: string,
+        current_flag: number,
+        start_date: string,
+        end_date: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
       contest_type: string,
+      no1:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no2:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no3:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no4:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
+      no5:  {
+        __typename: "ResultSchema",
+        result: string,
+        penalty: string,
+      },
       best: string,
       average: string,
       user_id: string,
+      user?:  {
+        __typename: "Users",
+        id: string,
+        username: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1495,6 +1845,16 @@ export type OnCreateContestsSubscription = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -1513,6 +1873,16 @@ export type OnUpdateContestsSubscription = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -1531,6 +1901,16 @@ export type OnDeleteContestsSubscription = {
     id: string,
     events?:  {
       __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     contest_number: string,
@@ -1551,6 +1931,10 @@ export type OnCreateEventsSubscription = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1583,6 +1967,10 @@ export type OnUpdateEventsSubscription = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1615,6 +2003,10 @@ export type OnDeleteEventsSubscription = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1769,10 +2161,30 @@ export type OnCreateUsersSubscription = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1787,10 +2199,30 @@ export type OnUpdateUsersSubscription = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1805,10 +2237,30 @@ export type OnDeleteUsersSubscription = {
     username: string,
     pre_results?:  {
       __typename: "ModelPreResultsConnection",
+      items?:  Array< {
+        __typename: "PreResults",
+        id: string,
+        user_id: string,
+        event_type: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     results?:  {
       __typename: "ModelResultsConnection",
+      items?:  Array< {
+        __typename: "Results",
+        id: string,
+        contest_id: string,
+        contest_type: string,
+        best: string,
+        average: string,
+        user_id: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1857,6 +2309,10 @@ export type OnCreateResultsSubscription = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1898,6 +2354,14 @@ export type OnCreateResultsSubscription = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1914,6 +2378,10 @@ export type OnUpdateResultsSubscription = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -1955,6 +2423,14 @@ export type OnUpdateResultsSubscription = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1971,6 +2447,10 @@ export type OnDeleteResultsSubscription = {
     contest?:  {
       __typename: "Contests",
       id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
       contest_number: string,
       contest_type: string,
       current_flag: number,
@@ -2012,6 +2492,14 @@ export type OnDeleteResultsSubscription = {
       __typename: "Users",
       id: string,
       username: string,
+      pre_results?:  {
+        __typename: "ModelPreResultsConnection",
+        nextToken?: string | null,
+      } | null,
+      results?:  {
+        __typename: "ModelResultsConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,

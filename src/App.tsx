@@ -17,53 +17,61 @@ import { API } from 'aws-amplify';
 import { getByUsername } from './graphql/queries';
 import { createUsers } from './graphql/mutations';
 import { GraphQLResult } from '@aws-amplify/api-graphql';
-import { GetByUsernameQuery } from './API';
+import { CreateUsersMutation, GetByUsernameQuery } from './API';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { setUsername } = userActions;
+  const { setUser } = userActions;
   const username = useSelector((state: RootState) => state.user.username);
   const localUsername = localStorage.username;
-  if (username === '' && localUsername !== '') {
-    dispatch(setUsername(localUsername));
-  }
   async function getUser() {
-    try {
-      const user = (await API.graphql({
-        query: getByUsername,
-        variables: { username: localUsername },
-      })) as GraphQLResult<GetByUsernameQuery>;
-      if (typeof user === 'undefined') {
-        return;
-      }
-      if (!user.data?.getByUsername?.items?.length) {
-        await API.graphql({
-          query: createUsers,
+    if (localUsername) {
+      try {
+        const user = (await API.graphql({
+          query: getByUsername,
           variables: { username: localUsername },
-        });
+        })) as GraphQLResult<GetByUsernameQuery>;
+        if (typeof user === 'undefined') {
+          return;
+        }
+        if (!user.data?.getByUsername?.items?.length) {
+          const newUser = (await API.graphql({
+            query: createUsers,
+            variables: { input: { username: localUsername } },
+          })) as GraphQLResult<CreateUsersMutation>;
+          if (newUser.data?.createUsers) {
+            const userData = newUser.data.createUsers;
+            dispatch(setUser({ id: userData.id, username: userData.username }));
+          }
+        } else {
+          const userData = user.data.getByUsername.items.pop();
+          if (userData) {
+            dispatch(setUser({ id: userData.id, username: userData.username }));
+          }
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.log(e);
     }
   }
   useEffect(() => {
+    console.log('inn');
     getUser();
-  }, []);
+  }, [localUsername]);
 
   return (
     <div>
       <BrowserRouter>
         <Spinner>
           <div>
-            {localUsername ? <NavBarItem /> : <div />}
+            {username ? <NavBarItem /> : <Redirect to="/login" />}
             <Alert />
             <Switch>
               <Route exact path="/">
-                {localUsername ? <div /> : <Redirect to="/login" />}
                 <TopPage />
               </Route>
               <Route path="/login">
-                {!localUsername ? <Authentication /> : <Redirect to="/" />}
+                {!username ? <Authentication /> : <Redirect to="/" />}
               </Route>
               <Route path="/forgot-password">
                 <ForgotPassword />
