@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "jimcontest": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

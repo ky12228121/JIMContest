@@ -22,8 +22,8 @@ import { CreateUsersMutation, GetByUsernameQuery } from './API';
 const App = () => {
   const dispatch = useDispatch();
   const { setUser } = userActions;
-  const username = useSelector((state: RootState) => state.user.username);
   const localUsername = localStorage.username;
+
   async function getUser() {
     if (localUsername) {
       try {
@@ -55,7 +55,6 @@ const App = () => {
     }
   }
   useEffect(() => {
-    console.log('inn');
     getUser();
   }, [localUsername]);
 
@@ -64,14 +63,14 @@ const App = () => {
       <BrowserRouter>
         <Spinner>
           <div>
-            {username ? <NavBarItem /> : <Redirect to="/login" />}
+            {localUsername ? <NavBarItem /> : <Redirect to="/login" />}
             <Alert />
             <Switch>
               <Route exact path="/">
                 <TopPage />
               </Route>
               <Route path="/login">
-                {!username ? <Authentication /> : <Redirect to="/" />}
+                {!localUsername ? <Authentication /> : <Redirect to="/" />}
               </Route>
               <Route path="/forgot-password">
                 <ForgotPassword />
