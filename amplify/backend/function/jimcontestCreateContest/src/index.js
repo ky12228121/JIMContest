@@ -11,9 +11,8 @@ const urlParse = require("url").URL;
 const appsyncUrl = process.env.API_JIMCONTEST_GRAPHQLAPIENDPOINTOUTPUT;
 const region = process.env.REGION;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
-const graphqlQuery = require('./query.js').mutation;
+const graphqlQuery = require("./query.js").mutation;
 const apiKey = process.env.API_JIMCONTEST_GRAPHQLAPIKEYOUTPUT;
-
 
 exports.handler = async (event) => {
   let responseMessage = "all failed!";
@@ -22,7 +21,6 @@ exports.handler = async (event) => {
   const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
   const contestNo = `D${today.getFullYear()}${today.getMonth() + 1}${today.getDate()}`;
   const req = new AWS.HttpRequest(appsyncUrl, region);
-
   const item = {
     input: {
       contest_number: contestNo,
@@ -66,7 +64,7 @@ exports.handler = async (event) => {
     httpRequest.write(req.body);
     httpRequest.end();
   });
-  console.log(data)
+  console.log(data);
 
   const response = {
     statusCode: 200,

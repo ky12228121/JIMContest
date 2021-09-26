@@ -49,7 +49,11 @@
               "userPoolId": "authjimcontest44ead4df44ead4df"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     }

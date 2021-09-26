@@ -1,4 +1,4 @@
-type Contests @model
+type Contests @model @aws_iam
   @key(name: "getByCurrentFlag", fields:["current_flag"], queryField: "getByCurrentFlag") {
   id: ID!
   events: [Events] @connection(keyName: "byContest", fields: ["id"])
