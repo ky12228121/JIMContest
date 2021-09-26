@@ -2,89 +2,23 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateContests = /* GraphQL */ `
-  subscription OnCreateContests {
-    onCreateContests {
-      id
-      events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contest_number
-      contest_type
-      current_flag
-      start_date
-      end_date
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateContests = /* GraphQL */ `
-  subscription OnUpdateContests {
-    onUpdateContests {
-      id
-      events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contest_number
-      contest_type
-      current_flag
-      start_date
-      end_date
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteContests = /* GraphQL */ `
-  subscription OnDeleteContests {
-    onDeleteContests {
-      id
-      events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contest_number
-      contest_type
-      current_flag
-      start_date
-      end_date
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateEvents = /* GraphQL */ `
   subscription OnCreateEvents {
     onCreateEvents {
       id
       contest_id
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
       contest {
         id
         events {
@@ -98,18 +32,6 @@ export const onCreateEvents = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -118,6 +40,18 @@ export const onUpdateEvents = /* GraphQL */ `
     onUpdateEvents {
       id
       contest_id
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
       contest {
         id
         events {
@@ -131,18 +65,6 @@ export const onUpdateEvents = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -151,6 +73,18 @@ export const onDeleteEvents = /* GraphQL */ `
     onDeleteEvents {
       id
       contest_id
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
       contest {
         id
         events {
@@ -164,18 +98,6 @@ export const onDeleteEvents = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -415,19 +337,6 @@ export const onCreateResults = /* GraphQL */ `
     onCreateResults {
       id
       contest_id
-      contest {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
       contest_type
       no1 {
         result
@@ -466,6 +375,19 @@ export const onCreateResults = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      contest {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -474,19 +396,6 @@ export const onUpdateResults = /* GraphQL */ `
     onUpdateResults {
       id
       contest_id
-      contest {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
       contest_type
       no1 {
         result
@@ -525,14 +434,6 @@ export const onUpdateResults = /* GraphQL */ `
       }
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onDeleteResults = /* GraphQL */ `
-  subscription OnDeleteResults {
-    onDeleteResults {
-      id
-      contest_id
       contest {
         id
         events {
@@ -546,6 +447,14 @@ export const onDeleteResults = /* GraphQL */ `
         createdAt
         updatedAt
       }
+    }
+  }
+`;
+export const onDeleteResults = /* GraphQL */ `
+  subscription OnDeleteResults {
+    onDeleteResults {
+      id
+      contest_id
       contest_type
       no1 {
         result
@@ -582,6 +491,97 @@ export const onDeleteResults = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      createdAt
+      updatedAt
+      contest {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onCreateContests = /* GraphQL */ `
+  subscription OnCreateContests {
+    onCreateContests {
+      id
+      events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contest_number
+      contest_type
+      current_flag
+      start_date
+      end_date
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateContests = /* GraphQL */ `
+  subscription OnUpdateContests {
+    onUpdateContests {
+      id
+      events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contest_number
+      contest_type
+      current_flag
+      start_date
+      end_date
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteContests = /* GraphQL */ `
+  subscription OnDeleteContests {
+    onDeleteContests {
+      id
+      events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contest_number
+      contest_type
+      current_flag
+      start_date
+      end_date
       createdAt
       updatedAt
     }
