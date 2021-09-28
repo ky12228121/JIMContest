@@ -1,5 +1,7 @@
-type Contests @model @auth (rules: [{ allow: private, provider: iam }])
-  @key(name: "getByCurrentFlag", fields:["current_flag"], queryField: "getByCurrentFlag") {
+type Contests
+  @model
+  @auth(rules: [{ allow: private, provider: iam, operations: [create] }, { allow: owner }])
+  @key(name: "getByCurrentFlag", fields: ["current_flag"], queryField: "getByCurrentFlag") {
   id: ID!
   events: [Events] @connection(keyName: "byContest", fields: ["id"])
   contest_number: String!
@@ -9,7 +11,8 @@ type Contests @model @auth (rules: [{ allow: private, provider: iam }])
   end_date: String!
 }
 
-type Events @model 
+type Events
+  @model
   @key(fields: ["event_type", "contest_id"])
   @key(name: "byContest", fields: ["contest_id", "event_type", "scramble_id", "entry_count"]) {
   id: ID!
@@ -21,10 +24,11 @@ type Events @model
   entry_count: Int!
 }
 
-type PreResults @model
-  @auth(rules: [{ allow: owner }]) 
+type PreResults
+  @model
+  @auth(rules: [{ allow: owner }])
   @key(fields: ["event_type", "user_id"])
-  @key(name: "getByUser" fields: ["user_id"]) {
+  @key(name: "getByUser", fields: ["user_id"]) {
   id: ID!
   user_id: ID!
   event_type: String!
@@ -35,8 +39,7 @@ type PreResults @model
   no5: ResultSchema
 }
 
-type Users @model 
-  @key(name: "getByUsername", fields: ["username"], queryField: "getByUsername") {
+type Users @model @key(name: "getByUsername", fields: ["username"], queryField: "getByUsername") {
   id: ID!
   username: String!
   pre_results: [PreResults] @connection(keyName: "getByUser", fields: ["id"])
@@ -49,8 +52,9 @@ type Scrambles @model {
   scramble: String!
 }
 
-type Results @model 
-  @key(fields: ["contest_type", "contest_id", "best", "average", "user_id"]) 
+type Results
+  @model
+  @key(fields: ["contest_type", "contest_id", "best", "average", "user_id"])
   @key(name: "getByUser", fields: ["user_id"], queryField: "getByUser") {
   id: ID!
   contest_id: ID!

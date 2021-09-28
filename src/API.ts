@@ -2,23 +2,27 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateEventsInput = {
-  id?: string | null,
-  contest_id: string,
-  event_type: string,
-  scramble_id: string,
-  entry_count: number,
+export type UpdateContestsInput = {
+  id: string,
+  contest_number?: string | null,
+  contest_type?: string | null,
+  current_flag?: number | null,
+  start_date?: string | null,
+  end_date?: string | null,
 };
 
-export type ModelEventsConditionInput = {
-  scramble_id?: ModelIDInput | null,
-  entry_count?: ModelIntInput | null,
-  and?: Array< ModelEventsConditionInput | null > | null,
-  or?: Array< ModelEventsConditionInput | null > | null,
-  not?: ModelEventsConditionInput | null,
+export type ModelContestsConditionInput = {
+  contest_number?: ModelStringInput | null,
+  contest_type?: ModelStringInput | null,
+  current_flag?: ModelIntInput | null,
+  start_date?: ModelStringInput | null,
+  end_date?: ModelStringInput | null,
+  and?: Array< ModelContestsConditionInput | null > | null,
+  or?: Array< ModelContestsConditionInput | null > | null,
+  not?: ModelContestsConditionInput | null,
 };
 
-export type ModelIDInput = {
+export type ModelStringInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -70,28 +74,6 @@ export type ModelIntInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
-export type Events = {
-  __typename: "Events",
-  id: string,
-  contest_id: string,
-  event_type: string,
-  scramble_id: string,
-  scramble?: Scrambles | null,
-  entry_count: number,
-  createdAt: string,
-  updatedAt: string,
-  contest?: Contests | null,
-};
-
-export type Scrambles = {
-  __typename: "Scrambles",
-  id: string,
-  evnet_id: string,
-  scramble: string,
-  createdAt: string,
-  updatedAt: string,
-};
-
 export type Contests = {
   __typename: "Contests",
   id: string,
@@ -103,12 +85,71 @@ export type Contests = {
   end_date: string,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type ModelEventsConnection = {
   __typename: "ModelEventsConnection",
   items?:  Array<Events | null > | null,
   nextToken?: string | null,
+};
+
+export type Events = {
+  __typename: "Events",
+  id: string,
+  contest_id: string,
+  contest?: Contests | null,
+  event_type: string,
+  scramble_id: string,
+  scramble?: Scrambles | null,
+  entry_count: number,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type Scrambles = {
+  __typename: "Scrambles",
+  id: string,
+  evnet_id: string,
+  scramble: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type DeleteContestsInput = {
+  id: string,
+};
+
+export type CreateEventsInput = {
+  id?: string | null,
+  contest_id: string,
+  event_type: string,
+  scramble_id: string,
+  entry_count: number,
+};
+
+export type ModelEventsConditionInput = {
+  scramble_id?: ModelIDInput | null,
+  entry_count?: ModelIntInput | null,
+  and?: Array< ModelEventsConditionInput | null > | null,
+  or?: Array< ModelEventsConditionInput | null > | null,
+  not?: ModelEventsConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type UpdateEventsInput = {
@@ -195,22 +236,6 @@ export type ModelUsersConditionInput = {
   not?: ModelUsersConditionInput | null,
 };
 
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
 export type Users = {
   __typename: "Users",
   id: string,
@@ -237,6 +262,7 @@ export type Results = {
   __typename: "Results",
   id: string,
   contest_id: string,
+  contest?: Contests | null,
   contest_type: string,
   no1: ResultSchema,
   no2: ResultSchema,
@@ -249,7 +275,6 @@ export type Results = {
   user?: Users | null,
   createdAt: string,
   updatedAt: string,
-  contest?: Contests | null,
 };
 
 export type UpdateUsersInput = {
@@ -336,28 +361,22 @@ export type CreateContestsInput = {
   end_date: string,
 };
 
-export type ModelContestsConditionInput = {
+export type ModelContestsFilterInput = {
+  id?: ModelIDInput | null,
   contest_number?: ModelStringInput | null,
   contest_type?: ModelStringInput | null,
   current_flag?: ModelIntInput | null,
   start_date?: ModelStringInput | null,
   end_date?: ModelStringInput | null,
-  and?: Array< ModelContestsConditionInput | null > | null,
-  or?: Array< ModelContestsConditionInput | null > | null,
-  not?: ModelContestsConditionInput | null,
+  and?: Array< ModelContestsFilterInput | null > | null,
+  or?: Array< ModelContestsFilterInput | null > | null,
+  not?: ModelContestsFilterInput | null,
 };
 
-export type UpdateContestsInput = {
-  id: string,
-  contest_number?: string | null,
-  contest_type?: string | null,
-  current_flag?: number | null,
-  start_date?: string | null,
-  end_date?: string | null,
-};
-
-export type DeleteContestsInput = {
-  id: string,
+export type ModelContestsConnection = {
+  __typename: "ModelContestsConnection",
+  items?:  Array<Contests | null > | null,
+  nextToken?: string | null,
 };
 
 export type ModelIDKeyConditionInput = {
@@ -454,22 +473,72 @@ export type ModelResultsFilterInput = {
   not?: ModelResultsFilterInput | null,
 };
 
-export type ModelContestsFilterInput = {
-  id?: ModelIDInput | null,
-  contest_number?: ModelStringInput | null,
-  contest_type?: ModelStringInput | null,
-  current_flag?: ModelIntInput | null,
-  start_date?: ModelStringInput | null,
-  end_date?: ModelStringInput | null,
-  and?: Array< ModelContestsFilterInput | null > | null,
-  or?: Array< ModelContestsFilterInput | null > | null,
-  not?: ModelContestsFilterInput | null,
+export type UpdateContestsMutationVariables = {
+  input: UpdateContestsInput,
+  condition?: ModelContestsConditionInput | null,
 };
 
-export type ModelContestsConnection = {
-  __typename: "ModelContestsConnection",
-  items?:  Array<Contests | null > | null,
-  nextToken?: string | null,
+export type UpdateContestsMutation = {
+  updateContests?:  {
+    __typename: "Contests",
+    id: string,
+    events?:  {
+      __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    contest_number: string,
+    contest_type: string,
+    current_flag: number,
+    start_date: string,
+    end_date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteContestsMutationVariables = {
+  input: DeleteContestsInput,
+  condition?: ModelContestsConditionInput | null,
+};
+
+export type DeleteContestsMutation = {
+  deleteContests?:  {
+    __typename: "Contests",
+    id: string,
+    events?:  {
+      __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    contest_number: string,
+    contest_type: string,
+    current_flag: number,
+    start_date: string,
+    end_date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type CreateEventsMutationVariables = {
@@ -482,19 +551,6 @@ export type CreateEventsMutation = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -509,7 +565,21 @@ export type CreateEventsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -523,19 +593,6 @@ export type UpdateEventsMutation = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -550,7 +607,21 @@ export type UpdateEventsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -564,19 +635,6 @@ export type DeleteEventsMutation = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -591,7 +649,21 @@ export type DeleteEventsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -908,6 +980,22 @@ export type CreateResultsMutation = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -954,21 +1042,6 @@ export type CreateResultsMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
   } | null,
 };
 
@@ -982,6 +1055,22 @@ export type UpdateResultsMutation = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -1028,21 +1117,6 @@ export type UpdateResultsMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
   } | null,
 };
 
@@ -1056,6 +1130,22 @@ export type DeleteResultsMutation = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -1102,21 +1192,6 @@ export type DeleteResultsMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
   } | null,
 };
 
@@ -1150,16 +1225,16 @@ export type CreateContestsMutation = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
-export type UpdateContestsMutationVariables = {
-  input: UpdateContestsInput,
-  condition?: ModelContestsConditionInput | null,
+export type GetContestsQueryVariables = {
+  id: string,
 };
 
-export type UpdateContestsMutation = {
-  updateContests?:  {
+export type GetContestsQuery = {
+  getContests?:  {
     __typename: "Contests",
     id: string,
     events?:  {
@@ -1183,39 +1258,36 @@ export type UpdateContestsMutation = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
-export type DeleteContestsMutationVariables = {
-  input: DeleteContestsInput,
-  condition?: ModelContestsConditionInput | null,
+export type ListContestsQueryVariables = {
+  filter?: ModelContestsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type DeleteContestsMutation = {
-  deleteContests?:  {
-    __typename: "Contests",
-    id: string,
-    events?:  {
-      __typename: "ModelEventsConnection",
-      items?:  Array< {
-        __typename: "Events",
-        id: string,
-        contest_id: string,
-        event_type: string,
-        scramble_id: string,
-        entry_count: number,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    contest_number: string,
-    contest_type: string,
-    current_flag: number,
-    start_date: string,
-    end_date: string,
-    createdAt: string,
-    updatedAt: string,
+export type ListContestsQuery = {
+  listContests?:  {
+    __typename: "ModelContestsConnection",
+    items?:  Array< {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
   } | null,
 };
 
@@ -1229,19 +1301,6 @@ export type GetEventsQuery = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -1256,7 +1315,21 @@ export type GetEventsQuery = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -1276,6 +1349,18 @@ export type ListEventsQuery = {
       __typename: "Events",
       id: string,
       contest_id: string,
+      contest?:  {
+        __typename: "Contests",
+        id: string,
+        contest_number: string,
+        contest_type: string,
+        current_flag: number,
+        start_date: string,
+        end_date: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
       event_type: string,
       scramble_id: string,
       scramble?:  {
@@ -1289,17 +1374,6 @@ export type ListEventsQuery = {
       entry_count: number,
       createdAt: string,
       updatedAt: string,
-      contest?:  {
-        __typename: "Contests",
-        id: string,
-        contest_number: string,
-        contest_type: string,
-        current_flag: number,
-        start_date: string,
-        end_date: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1516,6 +1590,22 @@ export type GetResultsQuery = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -1562,21 +1652,6 @@ export type GetResultsQuery = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
   } | null,
 };
 
@@ -1596,6 +1671,18 @@ export type ListResultsQuery = {
       __typename: "Results",
       id: string,
       contest_id: string,
+      contest?:  {
+        __typename: "Contests",
+        id: string,
+        contest_number: string,
+        contest_type: string,
+        current_flag: number,
+        start_date: string,
+        end_date: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
       contest_type: string,
       no1:  {
         __typename: "ResultSchema",
@@ -1634,17 +1721,37 @@ export type ListResultsQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
-      contest?:  {
-        __typename: "Contests",
-        id: string,
-        contest_number: string,
-        contest_type: string,
-        current_flag: number,
-        start_date: string,
-        end_date: string,
-        createdAt: string,
-        updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetByCurrentFlagQueryVariables = {
+  current_flag?: number | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelContestsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetByCurrentFlagQuery = {
+  getByCurrentFlag?:  {
+    __typename: "ModelContestsConnection",
+    items?:  Array< {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
       } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1695,6 +1802,18 @@ export type GetByUserQuery = {
       __typename: "Results",
       id: string,
       contest_id: string,
+      contest?:  {
+        __typename: "Contests",
+        id: string,
+        contest_number: string,
+        contest_type: string,
+        current_flag: number,
+        start_date: string,
+        end_date: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
       contest_type: string,
       no1:  {
         __typename: "ResultSchema",
@@ -1733,28 +1852,17 @@ export type GetByUserQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
-      contest?:  {
-        __typename: "Contests",
-        id: string,
-        contest_number: string,
-        contest_type: string,
-        current_flag: number,
-        start_date: string,
-        end_date: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
 };
 
-export type GetContestsQueryVariables = {
-  id: string,
+export type OnCreateContestsSubscriptionVariables = {
+  owner: string,
 };
 
-export type GetContestsQuery = {
-  getContests?:  {
+export type OnCreateContestsSubscription = {
+  onCreateContests?:  {
     __typename: "Contests",
     id: string,
     events?:  {
@@ -1778,64 +1886,73 @@ export type GetContestsQuery = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
-export type ListContestsQueryVariables = {
-  filter?: ModelContestsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type OnUpdateContestsSubscriptionVariables = {
+  owner: string,
 };
 
-export type ListContestsQuery = {
-  listContests?:  {
-    __typename: "ModelContestsConnection",
-    items?:  Array< {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken?: string | null,
+export type OnUpdateContestsSubscription = {
+  onUpdateContests?:  {
+    __typename: "Contests",
+    id: string,
+    events?:  {
+      __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    contest_number: string,
+    contest_type: string,
+    current_flag: number,
+    start_date: string,
+    end_date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
-export type GetByCurrentFlagQueryVariables = {
-  current_flag?: number | null,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelContestsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type OnDeleteContestsSubscriptionVariables = {
+  owner: string,
 };
 
-export type GetByCurrentFlagQuery = {
-  getByCurrentFlag?:  {
-    __typename: "ModelContestsConnection",
-    items?:  Array< {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken?: string | null,
+export type OnDeleteContestsSubscription = {
+  onDeleteContests?:  {
+    __typename: "Contests",
+    id: string,
+    events?:  {
+      __typename: "ModelEventsConnection",
+      items?:  Array< {
+        __typename: "Events",
+        id: string,
+        contest_id: string,
+        event_type: string,
+        scramble_id: string,
+        entry_count: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    contest_number: string,
+    contest_type: string,
+    current_flag: number,
+    start_date: string,
+    end_date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1844,19 +1961,6 @@ export type OnCreateEventsSubscription = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -1871,7 +1975,21 @@ export type OnCreateEventsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -1880,19 +1998,6 @@ export type OnUpdateEventsSubscription = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -1907,7 +2012,21 @@ export type OnUpdateEventsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -1916,19 +2035,6 @@ export type OnDeleteEventsSubscription = {
     __typename: "Events",
     id: string,
     contest_id: string,
-    event_type: string,
-    scramble_id: string,
-    scramble?:  {
-      __typename: "Scrambles",
-      id: string,
-      evnet_id: string,
-      scramble: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    entry_count: number,
-    createdAt: string,
-    updatedAt: string,
     contest?:  {
       __typename: "Contests",
       id: string,
@@ -1943,7 +2049,21 @@ export type OnDeleteEventsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
+    event_type: string,
+    scramble_id: string,
+    scramble?:  {
+      __typename: "Scrambles",
+      id: string,
+      evnet_id: string,
+      scramble: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    entry_count: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -2222,6 +2342,22 @@ export type OnCreateResultsSubscription = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -2268,21 +2404,6 @@ export type OnCreateResultsSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
   } | null,
 };
 
@@ -2291,6 +2412,22 @@ export type OnUpdateResultsSubscription = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -2337,21 +2474,6 @@ export type OnUpdateResultsSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
   } | null,
 };
 
@@ -2360,6 +2482,22 @@ export type OnDeleteResultsSubscription = {
     __typename: "Results",
     id: string,
     contest_id: string,
+    contest?:  {
+      __typename: "Contests",
+      id: string,
+      events?:  {
+        __typename: "ModelEventsConnection",
+        nextToken?: string | null,
+      } | null,
+      contest_number: string,
+      contest_type: string,
+      current_flag: number,
+      start_date: string,
+      end_date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     contest_type: string,
     no1:  {
       __typename: "ResultSchema",
@@ -2404,105 +2542,6 @@ export type OnDeleteResultsSubscription = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    contest?:  {
-      __typename: "Contests",
-      id: string,
-      events?:  {
-        __typename: "ModelEventsConnection",
-        nextToken?: string | null,
-      } | null,
-      contest_number: string,
-      contest_type: string,
-      current_flag: number,
-      start_date: string,
-      end_date: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-  } | null,
-};
-
-export type OnCreateContestsSubscription = {
-  onCreateContests?:  {
-    __typename: "Contests",
-    id: string,
-    events?:  {
-      __typename: "ModelEventsConnection",
-      items?:  Array< {
-        __typename: "Events",
-        id: string,
-        contest_id: string,
-        event_type: string,
-        scramble_id: string,
-        entry_count: number,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    contest_number: string,
-    contest_type: string,
-    current_flag: number,
-    start_date: string,
-    end_date: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateContestsSubscription = {
-  onUpdateContests?:  {
-    __typename: "Contests",
-    id: string,
-    events?:  {
-      __typename: "ModelEventsConnection",
-      items?:  Array< {
-        __typename: "Events",
-        id: string,
-        contest_id: string,
-        event_type: string,
-        scramble_id: string,
-        entry_count: number,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    contest_number: string,
-    contest_type: string,
-    current_flag: number,
-    start_date: string,
-    end_date: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteContestsSubscription = {
-  onDeleteContests?:  {
-    __typename: "Contests",
-    id: string,
-    events?:  {
-      __typename: "ModelEventsConnection",
-      items?:  Array< {
-        __typename: "Events",
-        id: string,
-        contest_id: string,
-        event_type: string,
-        scramble_id: string,
-        entry_count: number,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    contest_number: string,
-    contest_type: string,
-    current_flag: number,
-    start_date: string,
-    end_date: string,
     createdAt: string,
     updatedAt: string,
   } | null,

@@ -2,6 +2,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const updateContests = /* GraphQL */ `
+  mutation UpdateContests(
+    $input: UpdateContestsInput!
+    $condition: ModelContestsConditionInput
+  ) {
+    updateContests(input: $input, condition: $condition) {
+      id
+      events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contest_number
+      contest_type
+      current_flag
+      start_date
+      end_date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteContests = /* GraphQL */ `
+  mutation DeleteContests(
+    $input: DeleteContestsInput!
+    $condition: ModelContestsConditionInput
+  ) {
+    deleteContests(input: $input, condition: $condition) {
+      id
+      events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contest_number
+      contest_type
+      current_flag
+      start_date
+      end_date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const createEvents = /* GraphQL */ `
   mutation CreateEvents(
     $input: CreateEventsInput!
@@ -10,18 +70,6 @@ export const createEvents = /* GraphQL */ `
     createEvents(input: $input, condition: $condition) {
       id
       contest_id
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
       contest {
         id
         events {
@@ -34,7 +82,20 @@ export const createEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
+        owner
       }
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -46,18 +107,6 @@ export const updateEvents = /* GraphQL */ `
     updateEvents(input: $input, condition: $condition) {
       id
       contest_id
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
       contest {
         id
         events {
@@ -70,7 +119,20 @@ export const updateEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
+        owner
       }
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -82,18 +144,6 @@ export const deleteEvents = /* GraphQL */ `
     deleteEvents(input: $input, condition: $condition) {
       id
       contest_id
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
       contest {
         id
         events {
@@ -106,7 +156,20 @@ export const deleteEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
+        owner
       }
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -376,6 +439,20 @@ export const createResults = /* GraphQL */ `
     createResults(input: $input, condition: $condition) {
       id
       contest_id
+      contest {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+        owner
+      }
       contest_type
       no1 {
         result
@@ -414,19 +491,6 @@ export const createResults = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      contest {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -438,6 +502,20 @@ export const updateResults = /* GraphQL */ `
     updateResults(input: $input, condition: $condition) {
       id
       contest_id
+      contest {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+        owner
+      }
       contest_type
       no1 {
         result
@@ -476,19 +554,6 @@ export const updateResults = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      contest {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -500,6 +565,20 @@ export const deleteResults = /* GraphQL */ `
     deleteResults(input: $input, condition: $condition) {
       id
       contest_id
+      contest {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+        owner
+      }
       contest_type
       no1 {
         result
@@ -538,19 +617,6 @@ export const deleteResults = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      contest {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -580,64 +646,7 @@ export const createContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-    }
-  }
-`;
-export const updateContests = /* GraphQL */ `
-  mutation UpdateContests(
-    $input: UpdateContestsInput!
-    $condition: ModelContestsConditionInput
-  ) {
-    updateContests(input: $input, condition: $condition) {
-      id
-      events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contest_number
-      contest_type
-      current_flag
-      start_date
-      end_date
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteContests = /* GraphQL */ `
-  mutation DeleteContests(
-    $input: DeleteContestsInput!
-    $condition: ModelContestsConditionInput
-  ) {
-    deleteContests(input: $input, condition: $condition) {
-      id
-      events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contest_number
-      contest_type
-      current_flag
-      start_date
-      end_date
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;

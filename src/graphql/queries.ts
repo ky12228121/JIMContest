@@ -2,23 +2,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getContests = /* GraphQL */ `
+  query GetContests($id: ID!) {
+    getContests(id: $id) {
+      id
+      events {
+        items {
+          id
+          contest_id
+          event_type
+          scramble_id
+          entry_count
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contest_number
+      contest_type
+      current_flag
+      start_date
+      end_date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listContests = /* GraphQL */ `
+  query ListContests(
+    $filter: ModelContestsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listContests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getEvents = /* GraphQL */ `
   query GetEvents($event_type: String!, $contest_id: ID!) {
     getEvents(event_type: $event_type, contest_id: $contest_id) {
       id
       contest_id
-      event_type
-      scramble_id
-      scramble {
-        id
-        evnet_id
-        scramble
-        createdAt
-        updatedAt
-      }
-      entry_count
-      createdAt
-      updatedAt
       contest {
         id
         events {
@@ -31,7 +71,20 @@ export const getEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
+        owner
       }
+      event_type
+      scramble_id
+      scramble {
+        id
+        evnet_id
+        scramble
+        createdAt
+        updatedAt
+      }
+      entry_count
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -55,6 +108,17 @@ export const listEvents = /* GraphQL */ `
       items {
         id
         contest_id
+        contest {
+          id
+          contest_number
+          contest_type
+          current_flag
+          start_date
+          end_date
+          createdAt
+          updatedAt
+          owner
+        }
         event_type
         scramble_id
         scramble {
@@ -67,16 +131,6 @@ export const listEvents = /* GraphQL */ `
         entry_count
         createdAt
         updatedAt
-        contest {
-          id
-          contest_number
-          contest_type
-          current_flag
-          start_date
-          end_date
-          createdAt
-          updatedAt
-        }
       }
       nextToken
     }
@@ -266,6 +320,20 @@ export const getResults = /* GraphQL */ `
     ) {
       id
       contest_id
+      contest {
+        id
+        events {
+          nextToken
+        }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+        owner
+      }
       contest_type
       no1 {
         result
@@ -304,19 +372,6 @@ export const getResults = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      contest {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -340,6 +395,17 @@ export const listResults = /* GraphQL */ `
       items {
         id
         contest_id
+        contest {
+          id
+          contest_number
+          contest_type
+          current_flag
+          start_date
+          end_date
+          createdAt
+          updatedAt
+          owner
+        }
         contest_type
         no1 {
           result
@@ -372,16 +438,39 @@ export const listResults = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        contest {
-          id
-          contest_number
-          contest_type
-          current_flag
-          start_date
-          end_date
-          createdAt
-          updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getByCurrentFlag = /* GraphQL */ `
+  query GetByCurrentFlag(
+    $current_flag: Int
+    $sortDirection: ModelSortDirection
+    $filter: ModelContestsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getByCurrentFlag(
+      current_flag: $current_flag
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        events {
+          nextToken
         }
+        contest_number
+        contest_type
+        current_flag
+        start_date
+        end_date
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }
@@ -436,6 +525,17 @@ export const getByUser = /* GraphQL */ `
       items {
         id
         contest_id
+        contest {
+          id
+          contest_number
+          contest_type
+          current_flag
+          start_date
+          end_date
+          createdAt
+          updatedAt
+          owner
+        }
         contest_type
         no1 {
           result
@@ -466,98 +566,6 @@ export const getByUser = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        createdAt
-        updatedAt
-        contest {
-          id
-          contest_number
-          contest_type
-          current_flag
-          start_date
-          end_date
-          createdAt
-          updatedAt
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const getContests = /* GraphQL */ `
-  query GetContests($id: ID!) {
-    getContests(id: $id) {
-      id
-      events {
-        items {
-          id
-          contest_id
-          event_type
-          scramble_id
-          entry_count
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contest_number
-      contest_type
-      current_flag
-      start_date
-      end_date
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listContests = /* GraphQL */ `
-  query ListContests(
-    $filter: ModelContestsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listContests(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getByCurrentFlag = /* GraphQL */ `
-  query GetByCurrentFlag(
-    $current_flag: Int
-    $sortDirection: ModelSortDirection
-    $filter: ModelContestsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getByCurrentFlag(
-      current_flag: $current_flag
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        events {
-          nextToken
-        }
-        contest_number
-        contest_type
-        current_flag
-        start_date
-        end_date
         createdAt
         updatedAt
       }
