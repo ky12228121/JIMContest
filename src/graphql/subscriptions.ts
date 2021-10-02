@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateContests = /* GraphQL */ `
-  subscription OnCreateContests($owner: String!) {
-    onCreateContests(owner: $owner) {
+  subscription OnCreateContests {
+    onCreateContests {
       id
       events {
         items {
@@ -25,13 +25,12 @@ export const onCreateContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateContests = /* GraphQL */ `
-  subscription OnUpdateContests($owner: String!) {
-    onUpdateContests(owner: $owner) {
+  subscription OnUpdateContests {
+    onUpdateContests {
       id
       events {
         items {
@@ -52,13 +51,12 @@ export const onUpdateContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteContests = /* GraphQL */ `
-  subscription OnDeleteContests($owner: String!) {
-    onDeleteContests(owner: $owner) {
+  subscription OnDeleteContests {
+    onDeleteContests {
       id
       events {
         items {
@@ -79,7 +77,6 @@ export const onDeleteContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -100,7 +97,6 @@ export const onCreateEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -134,7 +130,6 @@ export const onUpdateEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -168,7 +163,6 @@ export const onDeleteEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -433,7 +427,6 @@ export const onCreateResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {
@@ -493,7 +486,6 @@ export const onUpdateResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {
@@ -553,7 +545,6 @@ export const onDeleteResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {

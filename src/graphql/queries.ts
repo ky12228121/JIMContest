@@ -25,7 +25,6 @@ export const getContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -48,7 +47,6 @@ export const listContests = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -71,7 +69,6 @@ export const getEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -117,7 +114,6 @@ export const listEvents = /* GraphQL */ `
           end_date
           createdAt
           updatedAt
-          owner
         }
         event_type
         scramble_id
@@ -332,7 +328,6 @@ export const getResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {
@@ -404,7 +399,6 @@ export const listResults = /* GraphQL */ `
           end_date
           createdAt
           updatedAt
-          owner
         }
         contest_type
         no1 {
@@ -470,7 +464,6 @@ export const getByCurrentFlag = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -534,7 +527,6 @@ export const getByUser = /* GraphQL */ `
           end_date
           createdAt
           updatedAt
-          owner
         }
         contest_type
         no1 {

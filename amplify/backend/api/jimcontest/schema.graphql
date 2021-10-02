@@ -1,6 +1,11 @@
 type Contests
   @model
-  @auth(rules: [{ allow: private, provider: iam, operations: [create] }, { allow: owner }])
+  @auth(
+    rules: [
+      { allow: private, provider: iam, operations: [create] }
+      { allow: private, provider: userPools, operations: [update, delete, read] }
+    ]
+  )
   @key(name: "getByCurrentFlag", fields: ["current_flag"], queryField: "getByCurrentFlag") {
   id: ID!
   events: [Events] @connection(keyName: "byContest", fields: ["id"])

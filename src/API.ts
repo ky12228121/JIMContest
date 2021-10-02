@@ -85,7 +85,6 @@ export type Contests = {
   end_date: string,
   createdAt: string,
   updatedAt: string,
-  owner?: string | null,
 };
 
 export type ModelEventsConnection = {
@@ -503,7 +502,6 @@ export type UpdateContestsMutation = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -537,7 +535,6 @@ export type DeleteContestsMutation = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -565,7 +562,6 @@ export type CreateEventsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -607,7 +603,6 @@ export type UpdateEventsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -649,7 +644,6 @@ export type DeleteEventsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -994,7 +988,6 @@ export type CreateResultsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {
@@ -1069,7 +1062,6 @@ export type UpdateResultsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {
@@ -1144,7 +1136,6 @@ export type DeleteResultsMutation = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {
@@ -1225,7 +1216,6 @@ export type CreateContestsMutation = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -1258,7 +1248,6 @@ export type GetContestsQuery = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -1285,7 +1274,6 @@ export type ListContestsQuery = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1315,7 +1303,6 @@ export type GetEventsQuery = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -1359,7 +1346,6 @@ export type ListEventsQuery = {
         end_date: string,
         createdAt: string,
         updatedAt: string,
-        owner?: string | null,
       } | null,
       event_type: string,
       scramble_id: string,
@@ -1604,7 +1590,6 @@ export type GetResultsQuery = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {
@@ -1681,7 +1666,6 @@ export type ListResultsQuery = {
         end_date: string,
         createdAt: string,
         updatedAt: string,
-        owner?: string | null,
       } | null,
       contest_type: string,
       no1:  {
@@ -1751,7 +1735,6 @@ export type GetByCurrentFlagQuery = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1812,7 +1795,6 @@ export type GetByUserQuery = {
         end_date: string,
         createdAt: string,
         updatedAt: string,
-        owner?: string | null,
       } | null,
       contest_type: string,
       no1:  {
@@ -1857,10 +1839,6 @@ export type GetByUserQuery = {
   } | null,
 };
 
-export type OnCreateContestsSubscriptionVariables = {
-  owner: string,
-};
-
 export type OnCreateContestsSubscription = {
   onCreateContests?:  {
     __typename: "Contests",
@@ -1886,12 +1864,7 @@ export type OnCreateContestsSubscription = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
-};
-
-export type OnUpdateContestsSubscriptionVariables = {
-  owner: string,
 };
 
 export type OnUpdateContestsSubscription = {
@@ -1919,12 +1892,7 @@ export type OnUpdateContestsSubscription = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
-};
-
-export type OnDeleteContestsSubscriptionVariables = {
-  owner: string,
 };
 
 export type OnDeleteContestsSubscription = {
@@ -1952,7 +1920,6 @@ export type OnDeleteContestsSubscription = {
     end_date: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -1975,7 +1942,6 @@ export type OnCreateEventsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -2012,7 +1978,6 @@ export type OnUpdateEventsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -2049,7 +2014,6 @@ export type OnDeleteEventsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     event_type: string,
     scramble_id: string,
@@ -2356,7 +2320,6 @@ export type OnCreateResultsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {
@@ -2426,7 +2389,6 @@ export type OnUpdateResultsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {
@@ -2496,7 +2458,6 @@ export type OnDeleteResultsSubscription = {
       end_date: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null,
     contest_type: string,
     no1:  {

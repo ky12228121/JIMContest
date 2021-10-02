@@ -28,7 +28,6 @@ export const updateContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -58,7 +57,6 @@ export const deleteContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -82,7 +80,6 @@ export const createEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -119,7 +116,6 @@ export const updateEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -156,7 +152,6 @@ export const deleteEvents = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       event_type
       scramble_id
@@ -451,7 +446,6 @@ export const createResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {
@@ -514,7 +508,6 @@ export const updateResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {
@@ -577,7 +570,6 @@ export const deleteResults = /* GraphQL */ `
         end_date
         createdAt
         updatedAt
-        owner
       }
       contest_type
       no1 {
@@ -646,7 +638,6 @@ export const createContests = /* GraphQL */ `
       end_date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
