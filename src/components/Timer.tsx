@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContestResultActions } from '../stores/ContestResultReducer';
-import { ContestStatusActions } from '../stores/ContestStatusReducer';
+import { EventResultActions } from '../stores/EventResultReducer';
+import { EventStatusActions } from '../stores/EventStatusReducer';
 import { RootState } from '../stores/Store';
 import { timerStyle } from '../styles/ContestStyle';
 import { altFlagDefault } from '../types/defalut';
@@ -12,8 +12,8 @@ import FinishView from './FInishView';
 
 const Timer = () => {
   const dispatch = useDispatch();
-  const { setResult } = ContestResultActions;
-  const { setNumberIncrease, setFinish } = ContestStatusActions;
+  const { setResult } = EventResultActions;
+  const { setNumberIncrease, setFinish } = EventStatusActions;
   const [timerText, setTimerText] = useState('0.000');
   const [timerState, setTimerState] = useState('init');
   const [longPressFlag, setLongPressFlag] = useState(false);

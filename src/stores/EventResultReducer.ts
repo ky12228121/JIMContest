@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { contestResultDefault } from '../types/defalut';
-const ContestResultReducer = createSlice({
-  name: 'contestResult',
+import { eventResultDefault } from '../types/defalut';
+const EventResultReducer = createSlice({
+  name: 'eventResult',
   initialState: {
-    result1: contestResultDefault,
-    result2: contestResultDefault,
-    result3: contestResultDefault,
-    result4: contestResultDefault,
-    result5: contestResultDefault,
+    result1: eventResultDefault,
+    result2: eventResultDefault,
+    result3: eventResultDefault,
+    result4: eventResultDefault,
+    result5: eventResultDefault,
   },
   reducers: {
     setResult: (state, action) => {
@@ -121,5 +121,5 @@ const ContestResultReducer = createSlice({
   },
 });
 
-export default ContestResultReducer.reducer;
-export const ContestResultActions = ContestResultReducer.actions;
+export default EventResultReducer.reducer;
+export const EventResultActions = EventResultReducer.actions;

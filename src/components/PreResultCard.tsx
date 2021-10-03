@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ContestResultActions } from '../stores/ContestResultReducer';
+import { EventResultActions } from '../stores/EventResultReducer';
 import { RootState } from '../stores/Store';
 import {
   activeDNFButtonClass,
@@ -13,9 +13,9 @@ import { PreResultCardProps } from '../types/interfaces';
 const PreResultCard = (props: PreResultCardProps) => {
   const { no, result } = props;
   const dispatch = useDispatch();
-  const status = useSelector((state: RootState) => state.contestStatus);
+  const status = useSelector((state: RootState) => state.eventStatus);
   const currentNumber = status.number;
-  const { setPenalty } = ContestResultActions;
+  const { setPenalty } = EventResultActions;
   const currentPenalty = result.penalty;
   function handleClickDnf() {
     if (currentPenalty === 'dnf') {

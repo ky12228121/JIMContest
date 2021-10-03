@@ -2,11 +2,11 @@ export const altFlagDefault = {
   flag: false,
   event: null,
 };
-export const contestResultDefault = {
+export const eventResultDefault = {
   result: '0.000',
   penalty: 'no',
 };
-export const contestStatusDefault = {
+export const eventStatusDefault = {
   number: 1,
 };
 export const alertInfoDefault = {

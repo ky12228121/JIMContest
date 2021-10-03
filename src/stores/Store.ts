@@ -1,18 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import 'react-redux';
 import { combineReducers } from 'redux';
-import contestResult from './ContestResultReducer';
-import contestStatus from './ContestStatusReducer';
+import eventResult from './EventResultReducer';
+import eventStatus from './EventStatusReducer';
 import user from './UserReducer';
 import alert from './AlertReducer';
 import spinner from './SpinnerReducer';
+import contestInfo from './ContestInfoReducer';
 
 const reducer = combineReducers({
   user: user,
-  contestResult: contestResult,
-  contestStatus: contestStatus,
+  eventResult: eventResult,
+  eventStatus: eventStatus,
   alert: alert,
   spinner: spinner,
+  contestInfo: contestInfo,
 });
 
 const store = configureStore({ reducer });

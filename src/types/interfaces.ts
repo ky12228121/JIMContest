@@ -41,3 +41,13 @@ export interface PastRecordTableProps {
 export interface SpinnerProps {
   children: JSX.Element;
 }
+
+interface ContestInfo {
+  id: string;
+  contest_nubmer: string;
+  contest_type: string;
+}
+
+export interface JumbotronItemProps {
+  contestInfo: ContestInfo[];
+}

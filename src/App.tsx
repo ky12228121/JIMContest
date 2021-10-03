@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Alert from './layouts/Alert';
 import NavBarItem from './layouts/NavbarItem';
@@ -13,14 +13,12 @@ import Ranking from './pages/Ranking';
 import TopPage from './pages/TopPage';
 import { userActions } from './stores/UserReducer';
 import { API } from 'aws-amplify';
-import { getByUsername, listContests, getContests } from './graphql/queries';
+import { getByUsername } from './graphql/queries';
 import { createUsers } from './graphql/mutations';
 import { GraphQLResult } from '@aws-amplify/api-graphql';
-import {
-  CreateUsersMutation,
-  GetByUsernameQuery,
-  ListContestsQuery,
-} from './API';
+import { CreateUsersMutation, GetByUsernameQuery } from './API';
+import { ContestInfoActions } from './stores/ContestInfoReducer';
+import { RootState } from './stores/Store';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,27 +55,9 @@ const App = () => {
       }
     }
   }
-  async function test() {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const nextDay = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 1
-    );
-    try {
-      const a = (await API.graphql({
-        query: getContests,
-        variables: { id: '6f76a0a6-9f3e-444f-9be7-402ffb3b3de5' },
-      })) as GraphQLResult<ListContestsQuery>;
-      console.log(a);
-    } catch (e) {
-      console.log('test', e);
-    }
-  }
+
   useEffect(() => {
     getUser();
-    test();
   }, [localUsername]);
 
   return (

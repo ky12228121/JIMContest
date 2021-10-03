@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const ContestStatusReducer = createSlice({
+const EventStatusReducer = createSlice({
   name: 'contestStatus',
   initialState: {
     number: 0,
@@ -18,5 +18,5 @@ const ContestStatusReducer = createSlice({
   },
 });
 
-export default ContestStatusReducer.reducer;
-export const ContestStatusActions = ContestStatusReducer.actions;
+export default EventStatusReducer.reducer;
+export const EventStatusActions = EventStatusReducer.actions;
